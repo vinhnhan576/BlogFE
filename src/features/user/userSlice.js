@@ -34,7 +34,8 @@ export const updateUserAsync = createAsyncThunk('', async ({ id, userReq }) => {
     console.log(userReq.profilepic);
     const response = await Axios.put(
         `${serverUrl}${userUrl}/update-user?id=${id}`,
-        formData
+        formData,
+        { headers: authHeader() }
     );
     const tasks = response.data;
     return { tasks };
