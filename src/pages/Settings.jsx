@@ -2,17 +2,19 @@ import React from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 import Avatar from 'react-avatar-edit';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUserAsync } from '../features/user/userSlice';
 
-const Settings = (props) => {
+const Settings = () => {
     const dispatch = useDispatch();
 
+    const user = useSelector((state) => state.user);
+    // const blogger = useSelector((state) => state.blogger);
     var [src, setSrc] = useState(
-        props.blogger.profilepic === '' ||
-            props.blogger.profilepic === undefined
+        user.profilepic === '' ||
+            user.profilepic === undefined
             ? require('../assets/image/user/alt.png')
-            : 'data:image/jpg;base64,' + props.blogger.profilepic
+            : 'data:image/jpg;base64,' + user.profilepic
     );
     var [newImg, setNewImg] = useState();
     var [editting, setEditting] = useState(false);
@@ -29,7 +31,7 @@ const Settings = (props) => {
         } else {
             dispatch(
                 updateUserAsync({
-                    id: props.blogger._id,
+                    id: user._id,
                     userReq: { profilepic: file },
                 })
             );
@@ -66,8 +68,8 @@ const Settings = (props) => {
                             onCrop={(e) => setNewImg(e)}
                             onFileLoad={(file) => setFile(file)}
                         ></Avatar>
-                    ) : props.blogger.profilepic === '' ||
-                      props.blogger.profilepic === undefined ? (
+                    ) : user.profilepic === '' ||
+                      user.profilepic === undefined ? (
                         <div className="Settings__left__pfp__img-container">
                             <img
                                 src={changeImg === true ? newImg : src}

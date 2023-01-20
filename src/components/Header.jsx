@@ -8,6 +8,7 @@ import SettingsMenu from './SettingsMenu';
 import alt from '../assets/image/user/alt.png';
 import { useState } from 'react';
 import NoTopicNotif from './NoTopicNotif';
+import userSlice from '../features/user/userSlice';
 const mainNav = [
     {
         display: 'TRANG CHỦ',
@@ -42,6 +43,8 @@ function Header(props) {
 
     var currentTopic;
     const blog = useSelector((state) => state.blog);
+    
+    const user = useSelector((state) => state.user);
     const topics = props.blogger.Topic;
     // useEffect(() => {
     // 	if (typeof slug !== "object") {
@@ -49,7 +52,7 @@ function Header(props) {
     // 		dispatch(getBlogBySlugAsync(slug.current));
     // 	}
     // }, [dispatch, slug]);
-    const slugType = params['*'].split('/')[0];
+    const slugType = params['*']?.split('/')[0];
     switch (slugType) {
         case 'topic':
             if (topics)
@@ -134,7 +137,7 @@ function Header(props) {
                                     activeNav === index ? 'active' : ''
                                 }`}
                             >
-                                <Link to={`/${params.alias}${item.path}`}>
+                                <Link to={`/${params.alias || user.alias}${item.path}`}>
                                     {item.display}
                                 </Link>
                             </div>
@@ -150,8 +153,8 @@ function Header(props) {
                                 activeNav === 2 ? 'active' : ''
                             }`}
                         >
-                            {params['*'].includes('topic') ||
-                            params['*'].includes('blog')
+                            {params['*']?.includes('topic') ||
+                            params['*']?.includes('blog')
                                 ? currentTopic
                                 : 'CHỦ ĐỀ'}
                             {openTopics && (
@@ -180,11 +183,11 @@ function Header(props) {
                                 className="header__menu__right__pfp"
                                 onClick={() => setOpenSettings(!openSettings)}
                             >
-                                {props?.blogger?.profilepic !== '' &&
-                                typeof props.blogger.profilepic !==
+                                {user?.profilepic !== '' &&
+                                typeof user.profilepic !==
                                     'undefined' ? (
                                     <img
-                                        src={'data:image/jpg;base64,' + props.blogger.profilepic}
+                                        src={'data:image/jpg;base64,' + user.profilepic}
                                         alt={alt}
                                     />
                                 ) : (
@@ -200,7 +203,7 @@ function Header(props) {
                         )}
                         {openSettings && (
                             <SettingsMenu
-                                alias={props?.blogger?.alias}
+                                alias={user.alias}
                                 settings={settings}
                             />
                         )}

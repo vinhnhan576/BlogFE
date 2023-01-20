@@ -1,8 +1,12 @@
 import React from "react";
 import Helmet from "../components/Helmet";
 import user from "../assets/image/user/alt.png";
+import { useSelector } from "react-redux";
 
-function About({ blogger }) {
+function About() {
+	
+    // const user = useSelector((state) => state.user);
+    const blogger = useSelector((state) => state.blogger);
 	return (
         <Helmet title="Tớ là?">
             <div className="bigwhole">

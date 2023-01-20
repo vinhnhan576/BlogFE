@@ -12,21 +12,21 @@ import Settings from "../pages/Settings";
 function routes(props) {
 	return (
 		<Routes>
-			<Route path="/" exact element={<Home blogger={props.blogger} />} />
-			<Route path="/about" element={<About blogger={props.blogger} />} />
+			<Route path="/" exact element={<Home/>} />
+			<Route path="/about" element={<About/>} />
 			<Route path="/topic/:slug" element={<Category />} />
-			<Route path="/blog/:slug" element={<Blog name={props.blogger.name} />} />
+			<Route path="/blog/:slug" element={<Blog />} />
 			<Route
 				path="/newBlog"
 				element={
-					<NewBlog alias={props.blogger.alias} blogger={props.blogger} />
+					<NewBlog />
 				}
 			/>
 			<Route
 				path="/editBlog/:slug"
 				element={<EditBlog alias={props.blogger.alias} />}
 			/>
-			<Route path='/settings' element={< Settings blogger = {props.blogger} />}/>
+			<Route path='/settings' element={< Settings  />}/>
 		</Routes>
 	);
 }

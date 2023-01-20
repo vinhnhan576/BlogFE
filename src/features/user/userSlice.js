@@ -8,7 +8,6 @@ const userUrl = 'api/user';
 export const getUserByUsernameAsync = createAsyncThunk(
     'api/user/getUserByUsernameAsync',
     async ({ username }) => {
-        console.log(authHeader());
         const response = await Axios.get(
             `${serverUrl}${userUrl}/get-user-by-username?username=${username}`,
             { headers: authHeader() }

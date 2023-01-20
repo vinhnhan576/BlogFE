@@ -55,6 +55,7 @@ export const accountSlice = createSlice({
         logout: (state) => {
             localStorage.setItem('user', null)
             state.account = null;
+            state.user = null;
         },
     },
     extraReducers: {

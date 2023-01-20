@@ -3,6 +3,7 @@ $mobile-cover-image-width: 11em;
 $tablet-cover-image-width: 20em;
 
 .topicCard {
+	width: 1210px;
 	padding: 0 30px 30px 30px;
 
 	@include mobile {

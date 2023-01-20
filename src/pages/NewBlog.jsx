@@ -11,19 +11,21 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { getBloggerByAliasAsync } from '../features/user/bloggerSlice';
 import { getUserByUsernameAsync } from '../features/user/userSlice';
 
-const NewBlog = ({ alias, blogger }) => {
+const NewBlog = () => {
     const textareaRef = useRef();
     const imageRef = useRef();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const userSelector = useSelector((state) => state.user);
+    const user = useSelector((state) => state.user);
+    const blogger = useSelector((state) => state.blogger);
+    // const userSelector = useSelector((state) => state.user);
 
-    const user = JSON.parse(localStorage.getItem('user'))?.account;
+    const username = JSON.parse(localStorage.getItem('user'))?.account.username;
     useEffect(() => {
-        dispatch(getUserByUsernameAsync({ username: user.username }));
+        dispatch(getUserByUsernameAsync({ username: username }));
     }, [user.username, dispatch]);
-    console.log(userSelector?.Topic);
+    console.log(user);
 
     var date_format = new Date().toISOString().slice(0, 10);
     // console.log(date_format);
@@ -38,10 +40,12 @@ const NewBlog = ({ alias, blogger }) => {
         location: '',
         slug: '',
         topicID:
-            userSelector.Topic !== undefined && userSelector?.Topic.length !== 0
-                ? userSelector?.Topic[0]?._id
+            user.Topic !== undefined && user?.Topic.length !== 0
+                ? user?.Topic[0]?._id
                 : '',
         coverImg: '',
+        published: true,
+        signature: 'by ' + user.name,
     };
 
     const [newBlog, setNewBlog] = useState(initialBlogState);
@@ -88,7 +92,7 @@ const NewBlog = ({ alias, blogger }) => {
         }
         await dispatch(createNewBlogAsync({ blogReqData: newBlog }));
         await dispatch(getBloggerByAliasAsync(blogger.alias));
-        navigate(`/${alias}/`);
+        navigate(`/${blogger.alias}/`);
     };
 
     function TopicMenu({ topics }) {
@@ -133,7 +137,7 @@ const NewBlog = ({ alias, blogger }) => {
         <Helmet title="Tạo blog mới">
             <div className="new-blog">
                 <div className="new-blog__form__topic">
-                    <TopicMenu topics={userSelector.Topic}></TopicMenu>
+                    <TopicMenu topics={user.Topic}></TopicMenu>
                 </div>
                 <form className="new-blog__form" onSubmit={handleNewBlog}>
                     <input
@@ -180,11 +184,12 @@ const NewBlog = ({ alias, blogger }) => {
                             }
                         }}
                     ></textarea>
-                    {/* <input
-						type="text"
-						className="new-blog__form__signature"
-						placeholder="Chữ ký"
-					/> */}
+                    <input
+                        type="text"
+                        className="new-blog__form__signature"
+                        placeholder={initialBlogState.signature}
+                        onChange={handleChange('signature')}
+                    />
                     <button
                         className="new-blog__form__create-button"
                         type="submit"

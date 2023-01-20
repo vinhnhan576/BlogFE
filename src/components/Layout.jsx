@@ -12,18 +12,17 @@ function Layout() {
     const alias = params.alias;
     const dispatch = useDispatch();
     const blogger = useSelector((state) => state.blogger);
-    const userSelector = useSelector((state) => state.user);
-    const user = JSON.parse(localStorage.getItem('user'));
-    const account = user.account;
+    const user = useSelector((state) => state.user);
+    const username = JSON.parse(localStorage.getItem('user'))?.account?.username;
     useEffect(() => {
-        dispatch(getBloggerByAliasAsync(alias));
+        dispatch(getBloggerByAliasAsync(alias || user.alias));
         // if (account.alias === blogger.alias) {
-        //     dispatch(getUserByUsernameAsync({ username: account.username }));
+        username && dispatch(getUserByUsernameAsync({ username: username }));
         //     user.account = userSelector;
-		// 	console.log(user)
-            // localStorage.setItem('user', JSON.stringify(user));
+        // 	console.log(user)
+        // localStorage.setItem('user', JSON.stringify(user));
         // }
-    }, [dispatch, alias, account.alias, blogger.alias]);
+    }, [dispatch, alias, blogger.alias, username]);
 
     return (
         // <HashRouter>

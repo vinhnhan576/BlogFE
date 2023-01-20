@@ -7,10 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import PageNotFound from "./PageNotFound";
 import alt from "../assets/image/blog/alt.jpg";
 
-function Blog({ name }) {
+function Blog() {
 	const params = useParams();
 	const slug = params.slug;
 	const dispatch = useDispatch();
+    // const user = useSelector((state) => state.user);
+    const blogger = useSelector((state) => state.blogger);
 	const blogs = useSelector((state) => state.blog);
 	useEffect(() => {
 		dispatch(getBlogBySlugAsync(slug));
@@ -44,7 +46,7 @@ function Blog({ name }) {
 					<div className="blog__content">
 						<div className="blog__content__title">{blog.title}</div>
 						<div className="blog__content__body">{blog.content}</div>
-						<div className="blog__content__signature">by {name}</div>
+						<div className="blog__content__signature">by {blogger.name}</div>
 					</div>
 				</div>
 			</Helmet>

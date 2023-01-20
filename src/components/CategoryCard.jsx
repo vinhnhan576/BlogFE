@@ -39,7 +39,7 @@ const CategoryCard = (props) => {
 
 	const isEqual = (...objects) =>
 		objects.every((obj) => JSON.stringify(obj) === JSON.stringify(objects[0]));
-	const isLoggedIn = isEqual(user, blogger);
+	const isLoggedIn = user.alias === blogger.alias;
 
 	return (
         <div className="category_container" id={props.id}>
@@ -64,7 +64,7 @@ const CategoryCard = (props) => {
             {isLoggedIn && (
                 <div className="category_container-functions">
                     <div className="category_container-functions-left">
-                        {/* <i
+                        <i
 							className="bx bx-paper-plane"
 							ref={publish}
 							onClick={() => {
@@ -79,7 +79,7 @@ const CategoryCard = (props) => {
 								setOpenMessageBox(!openMessageBox);
 								setMessageBoxType("Lưu trữ");
 								publish.current.classList.toggle("hidden");
-							}}></i> */}
+							}}></i>
                     </div>
 
                     <div className="category_container-functions-right">

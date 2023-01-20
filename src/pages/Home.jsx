@@ -6,9 +6,12 @@ import { Link } from 'react-router-dom';
 
 import alt from '../assets/image/user/alt.png';
 
-function Home({ blogger }) {
+function Home() {
     // const allTopics = useSelector((state) => state.topic);
-    const user = JSON.parse(localStorage.getItem('user'))?.account;
+    // const user = JSON.parse(localStorage.getItem('user'))?.account;
+	
+    const user = useSelector((state) => state.user);
+    const blogger = useSelector((state) => state.blogger);
     // const userID = blogger.id;
     // const dispatch = useDispatch();
     // useEffect(() => {

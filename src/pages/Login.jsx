@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { authenticateUserAsync } from '../features/account/accountSlice';
 import { getUserByUsernameAsync } from '../features/user/userSlice';
@@ -10,15 +10,14 @@ import logo from '../assets/image/login/login-logo.png';
 import { unwrapResult } from '@reduxjs/toolkit';
 
 const Login = () => {
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.token) {
-        navigate('/' + user.account.alias + '/');
-    }
+    const user = useSelector((state) => state.user);
+    // if(user){
+    //     console.log(user)
+    //     navigate('/' + user.alias + '/')
+    // }
     const initialUserState = {
         username: '',
         password: '',
