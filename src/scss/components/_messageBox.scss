@@ -1,0 +1,52 @@
+.message-box {
+	&__container {
+		width: 50%;
+		height: 160px;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: white;
+		border-radius: 12px;
+		box-shadow: rgba(24, 16, 12, 0.573) 7px 7px 0px;
+
+		@include flex(center, space-between);
+	}
+
+	&__icon {
+		margin-left: 50px;
+
+		i {
+			color: $primary-bg;
+			font-size: 6rem;
+		}
+	}
+
+	&__content {
+    // margin-right: 150px;
+
+		&__title {
+			color: $primary-bg;
+      font-size: 1.5rem;
+      font-weight: 500;
+		}
+
+		&__body {
+      margin: 14px 0;
+			color: $text-inverted-color;
+      font-size: 1rem;
+      max-width: 300px;
+		}
+	}
+
+	&__close {
+		margin-right: 20px;
+    margin-left: 30px;
+
+		i {
+			color: rgb(143, 143, 143);
+			font-size: 4rem;
+			cursor: pointer;
+		}
+	}
+}

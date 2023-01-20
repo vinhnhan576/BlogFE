@@ -1,0 +1,342 @@
+$main-image-width: 42em;
+$mobile-cover-image-width: 11em;
+$tablet-cover-image-width: 20em;
+
+.topicCard {
+	padding: 0 30px 30px 30px;
+
+	@include mobile {
+		padding: 0 10px 0px 10px;
+	}
+
+	.topic {
+		display: inline-flex;
+		width: 100%;
+
+		&__title {
+			@include flex(center, center);
+			width: 100%;
+			font-size: 3.5em;
+			color: white;
+			font-weight: 600;
+			letter-spacing: 0.1rem;
+			font-family: "Josefin Sans", sans-serif;
+			padding-bottom: 30px;
+
+			@include mobile {
+				padding-bottom: 25px;
+			}
+
+			a {
+				white-space: nowrap;
+				margin: 0 20px;
+				@include mobile {
+					margin: 0 10px;
+				}
+			}
+
+			@include tablet {
+				font-size: 2.5em;
+			}
+			@include mobile {
+				font-size: 1.5em;
+				letter-spacing: 0;
+			}
+		}
+
+		&__line {
+			// margin-left: 1em;
+			width: 100%;
+			// height: 4em;
+			// position: relative;
+			// top: 2em;
+			border-top: 3px solid white;
+
+			@include mobile {
+				top: 0.75em;
+			}
+		}
+	}
+}
+
+.featured-blogs {
+	@include flex(flex-start, flex-start);
+
+	&__main-blog {
+		// display: inline-flex;
+		margin-top: 2em;
+		width: 45%;
+		margin-right: 60px;
+		padding-right: 40px;
+		// border-right: 1px solid rgb(187, 187, 187);
+
+		@include mobile {
+			display: none;
+		}
+
+		&__image {
+			width: $main-image-width;
+			height: calc(#{$main-image-width} / 1.75);
+			border: 2.5px solid white;
+			border-radius: 3px;
+
+			@include tablet {
+				width: 20em;
+				height: 20em;
+			}
+
+			@include mobile {
+				width: 10em;
+				height: 10em;
+			}
+
+			&__container {
+				position: relative;
+				right: 1em;
+				top: -1em;
+				width: $main-image-width;
+				height: calc(#{$main-image-width} / 1.75);
+				border-radius: 3px;
+				overflow: hidden;
+				@include flex(center, center);
+
+				@include tablet {
+					width: 20em;
+					height: 20em;
+				}
+
+				@include mobile {
+					width: 10em;
+					height: 10em;
+				}
+
+				&.landscape {
+					img {
+						height: 140%;
+					}
+				}
+
+				&.portrait {
+					img {
+						width: 100%;
+					}
+				}
+
+				// img {
+				// 	@include tablet {
+				// 		width: 20em;
+				// 		height: 20em;
+				// 	}
+
+				// 	@include mobile {
+				// 		width: 10em;
+				// 		height: 10em;
+				// 		right: 0.65em;
+				// 		top: -0.65em;
+				// 	}
+				// }
+			}
+		}
+
+		&__content {
+			margin: 20px 0;
+			width: auto;
+			position: relative;
+			padding: 5px;
+
+			&__border {
+				border-top: 12px solid #b98565;
+				position: absolute;
+				top: 34px;
+				bottom: 10px;
+				left: -10px;
+				right: 70px;
+				z-index: -2;
+			}
+
+			h3 {
+				margin: 10px 0;
+				width: 100%;
+				font-size: 2.5em;
+				// border-bottom: 2px solid white;
+				color: white;
+				font-weight: 400;
+				// letter-spacing: 0.2rem;
+				font-family: "Josefin Sans", sans-serif;
+
+				@include tablet {
+					font-size: 2em;
+				}
+
+				@include mobile {
+					font-size: 1.5em;
+				}
+			}
+
+			p {
+				font-family: "Source Sans Pro", sans-serif;
+				white-space: pre-wrap;
+				margin-top: 1em;
+				color: rgb(229, 229, 229);
+				font-size: 1.25em;
+				font-weight: 200;
+				max-height: 107px;
+				overflow: hidden;
+
+				@include tablet {
+					font-size: 1em;
+				}
+
+				@include mobile {
+					font-size: 1em;
+				}
+			}
+		}
+	}
+}
+
+.blog-card {
+	display: inline-flex;
+	margin-top: 3.5em;
+
+	@include mobile {
+		margin-top: 0rem;
+	}
+
+	&:first-child {
+		margin-bottom: 30px;
+	}
+
+	&__image {
+		width: $image-width;
+		height: calc(#{$image-width} / 1.65);
+		border: 2px solid white;
+		border-radius: 7px;
+
+		@include tablet {
+			width: 20em;
+			height: 20em;
+		}
+
+		@include mobile {
+			width: $mobile-cover-image-width;
+			height: calc(#{$mobile-cover-image-width} / 1.65);
+			border-radius: 4px;
+		}
+
+		&__container {
+			position: relative;
+			right: 0.75em;
+			top: -0.75em;
+			width: $image-width;
+			height: calc(#{$image-width} / 1.65);
+			border-radius: 7px;
+			overflow: hidden;
+			@include flex(center, center);
+
+			@include tablet {
+				width: 20em;
+				height: 20em;
+			}
+
+			@include mobile {
+				width: $mobile-cover-image-width;
+				height: calc(#{$mobile-cover-image-width} / 1.65);
+				border-radius: 4px;
+			}
+
+			&.landscape {
+				img {
+					position: absolute;
+					height: 125%;
+				}
+			}
+
+			&.portrait {
+				img {
+					width: 100%;
+					position: absolute;
+				}
+			}
+
+			// img {
+			// 	@include tablet {
+			// 		width: 20em;
+			// 		height: 20em;
+			// 	}
+
+			// 	@include mobile {
+			// 		width: 10em;
+			// 		height: 10em;
+			// 		right: 0.65em;
+			// 		top: -0.65em;
+			// 	}
+			// }
+		}
+	}
+
+	&__content {
+		margin-left: 2em;
+		height: 65px;
+		position: relative;
+		padding: 5px;
+
+		@include mobile {
+			margin-left: 1.5em;
+		}
+
+		&__border {
+			border-left: 8px solid #b98565;
+			position: absolute;
+			top: 10px;
+			bottom: 10px;
+			left: -10px;
+
+			@include mobile {
+				border-left: 4px solid #b98565;
+				left: -5px;
+				top: 7px;
+				bottom: 20px;
+			}
+		}
+
+		h3 {
+			width: 80%;
+			font-size: 2.5em;
+			border-bottom: 2px solid white;
+			color: white;
+			font-weight: 400;
+			// letter-spacing: 0.2rem;
+			font-family: "Josefin Sans", sans-serif;
+
+			@include tablet {
+				font-size: 2em;
+			}
+
+			@include mobile {
+				font-size: 1.05em;
+				width: 100%;
+			}
+		}
+
+		p {
+			margin-top: 1em;
+			color: white;
+			font-size: 1.25em;
+			font-weight: 200;
+			max-height: 105px;
+			overflow: hidden;
+			font-family: 'Source Sans Pro', sans-serif;
+			white-space: pre-wrap;
+
+			@include tablet {
+				font-size: 1em;
+			}
+
+			@include mobile {
+				font-size: 0.65em;
+				max-height: 40px;
+			}
+		}
+	}
+}

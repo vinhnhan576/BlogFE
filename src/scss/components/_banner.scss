@@ -1,0 +1,77 @@
+$gradient-overlay-height: 200px;
+$banner-border-radius: 7px;
+
+.banner {
+	&__image {
+		position: relative;
+		width: 1000px;
+		// height:40em;
+		@include flex(center, center);
+		flex-direction: column;
+		overflow: hidden;
+
+		@include tablet{
+				height: $image-width-tablet;
+				border-radius: $banner-border-radius;
+		}
+		
+		@include mobile{
+				height: 15em;
+				border-radius: $banner-border-radius;
+		}
+
+		&.overlay::after {
+			display: block;
+			position: relative;
+			background-image: linear-gradient(
+				to bottom,
+				rgba(255, 255, 255, 0) 0,
+				rgba(0, 0, 0, 0.747) 100%
+			);
+			margin-top: -$gradient-overlay-height;
+			height: $gradient-overlay-height;
+			width: 100%;
+			content: "";
+			border-radius: $banner-border-radius;
+			z-index: 0;
+		}
+
+		img {
+			// flex-shrink: 0;
+			height: 350px;
+			min-width: 100%;
+			min-height: 100%;
+			object-fit: cover;
+			border-radius: $banner-border-radius;
+
+			@include tablet{
+				height: 200px;
+				border-radius: $banner-border-radius;
+			}
+		}
+	}
+
+	&__quote {
+		position: absolute;
+		bottom: 1.5rem;
+		right: 4.5rem;
+		z-index: 1;
+		max-width: 800px;
+		text-align: right;
+
+		color: $text-primary-color;
+		font-size: 3rem;
+		font-family: 'Old Standard TT', serif;
+		font-style: italic;
+
+		@include tablet{
+			bottom: .75rem;
+			right: 2rem;
+
+			font-size: 2rem;
+		}
+		@include mobile {
+			font-size: 20px;
+		}
+	}
+}

@@ -1,0 +1,82 @@
+$new-blog-pfp-size: 6rem;
+$new-blog-mobile-pfp-size: 3rem;
+
+.home {
+	padding-top: 60px;
+	@include flex(center, center);
+	flex-direction: column;
+
+	@include mobile {
+		padding-top: 20px;
+	}
+
+	&__link {
+		height: 100%;
+		width: 100%;
+		@include flex(center, flex-start);
+	}
+
+	&__new-blog {
+		width: 90%;
+		height: 140px;
+		background: linear-gradient(to right, #93705c 0%, #c6a999 100%);
+		margin-bottom: 60px;
+		border-radius: 12px;
+
+		@include tablet {
+			border-radius: 10px;
+		}
+
+		@include mobile {
+			height: 70px;
+			width: 95%;
+			margin-bottom: 30px;
+		}
+
+		&__pfp {
+			width: $new-blog-pfp-size;
+			height: $new-blog-pfp-size;
+			overflow: hidden;
+			border-radius: 50%;
+			margin-left: 40px;
+			@include flex(center, center);
+
+			@include tablet {
+				margin-left: 20px;
+			}
+
+			@include mobile {
+				width: $new-blog-mobile-pfp-size;
+				height: $new-blog-mobile-pfp-size;
+				margin-left: 15px;
+			}
+
+			img {
+				width:10rem;
+				position: relative;
+				// top: -20%;
+
+				@include mobile {
+					width: $new-blog-mobile-pfp-size;
+				}
+			}
+		}
+
+		&__placeholder {
+			color: white;
+			margin-left: 40px;
+			font-size: 42px;
+			font-family: "Josefin Sans", sans-serif;
+
+			@include tablet {
+				margin-left: 20px;
+				font-size: 32px;
+			}
+
+			@include mobile {
+				margin-left: 15px;
+				font-size: 18px;
+			}
+		}
+	}
+}

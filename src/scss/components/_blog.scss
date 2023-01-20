@@ -1,0 +1,80 @@
+.blog {
+	@include flex(center, center);
+	flex-direction: column;
+	padding-top: 70px;
+
+	@include tablet {
+		padding-top: 40px;
+	}
+
+	@include mobile {
+		padding-top: 20px;
+	}
+
+	* {
+		color: $text-primary-color;
+		max-width: 1000px;
+
+		@include tablet {
+			max-width: 600px;
+		}
+		@include mobile {
+			max-width: 350px;
+		}
+	}
+
+	&__timestamp {
+		font-size: 1.25rem;
+		margin: 2rem 0 1rem 0;
+		font-family: "Playfair Display", serif;
+
+		@include tablet {
+			margin: 1.5rem 0 0.5rem 0;
+		}
+	}
+
+	&__content {
+		&__title {
+			text-align: center;
+			// text-shadow: $text-box-shadow;
+
+			font-size: 4rem;
+			font-family: "Playfair Display", serif;
+
+			@include tablet {
+				font-size: 2.5rem;
+			}
+			@include mobile {
+				font-size: 30px;
+			}
+		}
+
+		&__body {
+			// text-align: justify;
+			margin: 2rem 0;
+
+			font-size: 1rem;
+			line-height: 1.75rem;
+			font-family: 'Source Sans Pro', sans-serif;
+			white-space: pre-wrap;
+
+			@include tablet {
+				margin: 1rem 0;
+			}
+		}
+
+		&__signature {
+			text-align: end;
+			font-size: 2rem;
+			font-family: "Dancing Script", serif;
+
+			@include tablet {
+				padding-top: 0.5rem;
+				font-size: 1.5rem;
+			}
+			@include mobile {
+				font-size: 20px;
+			}
+		}
+	}
+}

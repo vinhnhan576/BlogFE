@@ -1,0 +1,247 @@
+$upper-pic-height: 600px;
+$upper-pic-width: 450px;
+
+$greetings-box-height: 400px;
+$greetings-box-width: 850px;
+
+$tablet-shrink-ratio: 1.77;
+$mobile-shrink-ratio: 3.55;
+
+$border-radius: 15px;
+$mobile-border-radius: 10px;
+
+.bigwhole {
+	&__whole {
+		display: inline-flex;
+		padding-left: 4em;
+		padding-top: 5em;
+
+		@include tablet {
+			padding: 0px 20px;
+		}
+
+		&__outline {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			border: 2px solid rgb(255, 255, 255);
+			top: 40px;
+			left: 40px;
+			z-index: -10;
+			border-radius: $border-radius;
+
+			@include mobile {
+				top: 28px;
+				left: 28px;
+				border-radius: $mobile-border-radius;
+			}
+		}
+
+		&__whole1 {
+			height: $upper-pic-height;
+			width: $upper-pic-width;
+
+			position: relative;
+			z-index: -9;
+
+			@include tablet {
+				height: calc(#{$upper-pic-height} / #{$tablet-shrink-ratio});
+				width: calc(#{$upper-pic-width} / #{$tablet-shrink-ratio});
+			}
+
+			@include mobile {
+				height: calc(#{$upper-pic-height} / #{$mobile-shrink-ratio});
+				width: calc(#{$upper-pic-width} / #{$mobile-shrink-ratio});
+			}
+
+			&__image {
+				height: $upper-pic-height;
+				width: $upper-pic-width;
+				border-radius: $border-radius;
+				overflow: hidden;
+				@include flex(center, center);
+margin: 20px;
+				img {
+					height: 100%;
+					// 
+					border-radius: $border-radius;
+
+					@include mobile {
+						border-radius: $mobile-border-radius;
+					}
+				}
+			}
+		}
+
+		&__whole2 {
+			height: 400px;
+			width: 850px;
+			position: relative;
+			left: -6em;
+			top: 6em;
+
+			@include tablet {
+				height: calc(#{$greetings-box-height} / #{$tablet-shrink-ratio});
+				width: calc(#{$greetings-box-width} / #{$tablet-shrink-ratio});
+			}
+
+			@include mobile {
+				height: calc(#{$greetings-box-height} / #{$mobile-shrink-ratio});
+				width: calc(#{$greetings-box-width} / #{$mobile-shrink-ratio});
+			}
+
+			&__greeting {
+				opacity: $box-opacity;
+				background-color: rgba(52, 24, 12, 1);
+
+				font-size: 30px;
+				font-weight: 100;
+				font-family: "Dancing Script", sans-serif;
+				color: white;
+
+				height: 100%;
+				width: 100%;
+				margin: 20px;
+				border-radius: $border-radius;
+				padding-left: 1em;
+
+				@include tablet {
+					font-size: 25px;
+				}
+
+				@include mobile {
+					font-size: 13px;
+				}
+			}
+
+			&__outline {
+				z-index: -8;
+			}
+		}
+	}
+
+	&__icon {
+		height: fit-content;
+		margin-top: 7em;
+		@include flex(center, center);
+
+		@include tablet {
+			align-items: center;
+			margin-top: 30px;
+		}
+
+		@include mobile {
+			margin-top: 30px;
+		}
+
+		img {
+			height: 8em;
+			width: 55em;
+			padding-top: 0;
+
+			@include tablet {
+				height: 5em;
+				width: 28.5em;
+				margin-bottom: 0px;
+			}
+
+			@include mobile {
+				height: 3em;
+				width: 20em;
+			}
+		}
+	}
+
+	&__pic {
+		margin: 5em auto;
+		@include flex(center, center);
+		width: 90%;
+		height: 34em;
+		overflow: hidden;
+		border-radius: $border-radius;
+
+		@include tablet {
+			margin: 3em auto;
+			height: 280px;
+		}
+
+		@include mobile {
+			margin: 2em auto;
+			height: 140px;
+			border-radius: 7px;
+		}
+
+		img {
+			min-width: 100%;
+			min-height: 100%;
+		}
+	}
+	&__intro {
+		font-size: 80px;
+		color: white;
+		text-align: left;
+		font-family: "Dancing Script", sans-serif;
+
+		@include tablet {
+			font-size: 60px;
+			padding-left: 20px;
+		}
+
+		@include mobile {
+			font-size: 40px;
+		}
+	}
+
+	&__concept {
+		margin-top: 30px;
+		font-size: 50px;
+		color: white;
+		text-align: left;
+		font-family: "Dancing Script", sans-serif;
+		border-top: 2px dotted white;
+
+		@include tablet {
+			font-size: 30px;
+			padding-left: 20px;
+			margin-top: 20px;
+			padding-top: 0px;
+		}
+
+		@include mobile {
+			font-size: 20px;
+			padding-left: 20px;
+		}
+	}
+
+	&__sign {
+		text-align: right;
+		margin-top: 2em;
+
+		img {
+			height: 6em;
+			width: 20em;
+
+			@include mobile {
+				height: 5em;
+				width: 15em;
+			}
+		}
+	}
+}
+
+.about {
+	&-greetings {
+		padding: 20px 0 0 25px;
+		font-size: 3rem;
+	}
+
+	&-name {
+		padding: 0 0 0 25px;
+		font-size: 4rem;
+	}
+
+	&-welcome {
+		padding: 20px 0 0 25px;
+		font-size: 2.5rem;
+	}
+}
