@@ -1,5 +1,5 @@
 $new-blog-pfp-size: 6rem;
-$new-blog-mobile-pfp-size: 3rem;
+$new-blog-mobile-pfp-size: 2.5rem;
 
 .home {
 	padding-top: 60px;
@@ -57,7 +57,7 @@ $new-blog-mobile-pfp-size: 3rem;
 				// top: -20%;
 
 				@include mobile {
-					width: $new-blog-mobile-pfp-size;
+					height: $new-blog-mobile-pfp-size;
 				}
 			}
 		}
