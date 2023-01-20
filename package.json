@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://vinhnhan576.github.io/BlogProject",
+  "homepage": "http://vinhnhan576.github.io/BlogFE",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.4",
     "@testing-library/jest-dom": "^5.16.4",
