@@ -23,6 +23,7 @@ const NewBlog = ({ alias, blogger }) => {
     useEffect(() => {
         dispatch(getUserByUsernameAsync({ username: user.username }));
     }, [user.username, dispatch]);
+    console.log(userSelector?.Topic);
 
     const initialBlogState = {
         title: '',
@@ -31,7 +32,10 @@ const NewBlog = ({ alias, blogger }) => {
         date: new Date().toLocaleDateString(),
         location: '',
         slug: '',
-        topicID: userSelector?.Topic[0]?._id,
+        topicID:
+            userSelector.Topic !== undefined && userSelector?.Topic.length !== 0
+                ? userSelector?.Topic[0]?._id
+                : '',
         coverImg: '',
     };
 
@@ -95,7 +99,7 @@ const NewBlog = ({ alias, blogger }) => {
                 newBlog.topicID = option;
                 setNewTopic('Chủ đề mới');
             }
-	console.log(initialBlogState);
+            console.log(initialBlogState);
         };
 
         return (
