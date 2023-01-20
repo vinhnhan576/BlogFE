@@ -43,11 +43,11 @@ const Signup = () => {
 		// });
 	};
 
-	const handleSignUp = (e) => {
+	const handleSignUp = async (e) => {
 		e.preventDefault();
 		console.log("registering...");
 		setAccount({ ...account, date: new Date(account.date) });
-		dispatch(createNewAccountAsync({ account }));
+		await dispatch(createNewAccountAsync({ account }));
 		navigate("/");
 	};
 

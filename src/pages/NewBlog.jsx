@@ -80,7 +80,8 @@ const NewBlog = ({ alias, blogger }) => {
             const result = unwrapResult(res);
             newBlog.topicID = result.tasks.result._id;
         }
-        dispatch(createNewBlogAsync({ blogReqData: newBlog }));
+        await dispatch(createNewBlogAsync({ blogReqData: newBlog }));
+        await dispatch(getBloggerByAliasAsync(blogger.alias));
         navigate(`/${alias}/`);
     };
 
