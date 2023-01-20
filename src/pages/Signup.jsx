@@ -14,7 +14,7 @@ const Signup = () => {
 		name: "",
 		alias: "",
 		gender: true,
-		date: "",
+		date: '2023-01-01',
 		tel: "",
 		job: "",
 		address: "",

@@ -40,7 +40,7 @@ export const createNewBlogAsync = createAsyncThunk(
         formData.append('content', blogReqData.content);
         formData.append('quote', blogReqData.quote);
         formData.append('date', blogReqData.date);
-        formData.append('location', blogReqData.date);
+        formData.append('location', blogReqData.location);
         const response = await Axios.post(serverUrl + blogUrl, formData, {
             headers: authHeader(),
         });
