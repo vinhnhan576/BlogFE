@@ -25,11 +25,16 @@ const NewBlog = ({ alias, blogger }) => {
     }, [user.username, dispatch]);
     console.log(userSelector?.Topic);
 
+    var date_format = new Date().toISOString().slice(0, 10);
+    // console.log(date_format);
+    // const date = date_format.getMonth()+'-'+ date_format.getDate()+'-'+date_format.getFullYear()
+    // console.log(date)
+
     const initialBlogState = {
         title: '',
         content: '',
         quote: '',
-        date: new Date().toLocaleDateString(),
+        date: date_format,
         location: '',
         slug: '',
         topicID:
@@ -43,6 +48,7 @@ const NewBlog = ({ alias, blogger }) => {
 
     const handleChange = (input) => (event) => {
         newBlog[input] = event.target.value;
+        console.log(initialBlogState.date);
     };
 
     const handleTitleChange = () => (event) => {
