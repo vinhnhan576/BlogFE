@@ -1,132 +1,155 @@
+:root {
+    --uploadedImage: none;
+}
+
 .new-blog {
-	&__form {
-		@include flex(center, center);
-		flex-direction: column;
-		padding-top: 15px;
-		&__topic {
-			margin: 0px 75px;
-			padding-top: 50px;
-		}
+    &__form {
+        @include flex(center, center);
+        flex-direction: column;
+        padding-top: 25px;
+        &__topic {
+            margin: 0px 75px;
+            padding-top: 50px;
+        }
 
-		input,
-		textarea {
-			width: 90%;
-			outline: none;
-			border: none;
-			padding: 10px 15px;
-			background: $primary-bg;
-			color: $text-primary-color;
-			border: 2px solid $text-secondary-color;
-			border-radius: 12px;
-			margin: 10px 0;
+        input,
+        textarea {
+            width: 70%;
+            outline: none;
+            border: none;
+            padding: 10px 15px;
+            background: $primary-bg;
+            color: $text-primary-color;
+            border: 2px solid $text-secondary-color;
+            border-radius: 12px;
+            margin: 10px 0;
 
-			&::-webkit-input-placeholder {
-				color: $text-secondary-color;
+            &::-webkit-input-placeholder {
+                color: $text-secondary-color;
+            }
+
+            &:is(:focus) {
+                border-color: white;
+                border-width: 3px;
+            }
+        }
+
+        &__container {
+            width: 100%;
+        }
+
+        &__image {
+            color: transparent;
+            // width: 1000px !important;
+            height: 67px;
+			&.change{
+				height: 350px;
 			}
+            // @include flex(center, center);
+            // flex-direction: column;
 
-			&:is(:focus) {
-				border-color: white;
-				border-width: 3px;
-			}
-		}
+            &::-webkit-file-upload-button {
+                visibility: hidden;
+            }
 
-		&__container {
-			
-			
-			width: 100%;
-		}
+            &::before {
+                width: 100%;
+                content: 'Upload your image here';
+                align-content: center;
+                text-align: center;
+                display: inline-block;
+                // color: rgb(76, 76, 76);
+                border: 1px solid #999;
+                border-radius: 3px;
+                padding: 5px 0px;
+                outline: none;
+                white-space: nowrap;
+                user-select: none;
+                cursor: pointer;
 
-		&__image {
-			color: transparent;
-			// @include flex(center, center);
-			// flex-direction: column;
+                font-size: 14pt;
+                font-family: 'Poppins', sans-serif;
+            }
 
-			&::-webkit-file-upload-button {
-				visibility: hidden;
-			}
+            &::after {
+                content: '';
+                display: block;
+                background-image: var(--uploadedImage);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 100%;
+                height: 80%;
+                margin-top: 20px;
+                object-fit: cover;
+            }
 
-			&::before {
-				content: "Select image for this blog";
-				display: inline-block;
-				background: linear-gradient(top, #f9f9f9, #e3e3e3);
-				border: 1px solid #999;
-				border-radius: 3px;
-				padding: 5px 8px;
-				outline: none;
-				white-space: nowrap;
-				user-select: none;
-				cursor: pointer;
+            &:hover::before {
+                border-color: white;
+                box-shadow: 1px 1px #fff;
+            }
 
-				font-size: 10pt;
-				font-family: "Playfair Display", serif;
-			}
+            &:active::before {
+                background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+            }
+            text-align: right;
+        }
 
-			&:hover::before {
-				border-color: white;
-				box-shadow: 1px 1px #fff;
-			}
+        &__quote {
+            font-size: 2.5rem;
+            font-family: 'Old Standard TT', serif;
+            font-style: italic;
+            text-align: right;
+        }
 
-			&:active::before {
-				background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-			}
-			text-align: right;
-		}
+        &__title {
+            line-height: 60px;
+            font-size: 4rem;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+        }
 
-		&__quote {
-			font-size: 2.5rem;
-			font-family: "Old Standard TT", serif;
-			font-style: italic;
-			text-align: right;
-		}
+        &__place {
+            width: 50%;
+            // line-height: 40px;
+            font-size: 1.25rem;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+        }
 
-		&__title {
-			line-height: 60px;
-			font-size: 4rem;
-			font-family: "Playfair Display", serif;
-			text-align: center;
-		}
+        &__body {
+            resize: none;
+            height: 200px;
+            text-align: justify;
+            font-size: 1rem;
 
-		&__place {
-			width: 50%;
-			// line-height: 40px;
-			font-size: 1.25rem;
-			font-family: "Playfair Display", serif;
-			text-align: center;
-		}
+            &::-webkit-scrollbar {
+                width: 0px;
+            }
+        }
 
-		&__body {
-			resize: none;
-			height: 200px;
-			text-align: justify;
-			font-size: 1rem;
+        &__signature {
+            text-align: right;
+            font-size: 2rem;
+            font-family: 'Dancing Script', serif;
+        }
 
-			&::-webkit-scrollbar {
-				width: 0px;
-			}
-		}
+        &__create-button {
+            width: 40%;
+            padding: 8px 30px;
+            font-family: 'Lobster', cursive;
+            font-size: 26px;
+            background-color: $button-primary-color;
+            color: $text-primary-color;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            margin: 20px 3px;
 
-		&__signature {
-			text-align: right;
-			font-size: 2rem;
-			font-family: "Dancing Script", serif;
-		}
-
-		&__create-button {
-			width: 40%;
-			padding: 8px 30px;
-			font-family: "Lobster", cursive;
-			font-size: 26px;
-			background-color: $button-primary-color;
-			color: $text-primary-color;
-			outline: none;
-			border: none;
-			cursor: pointer;
-			border-radius: 25px;
-			margin: 20px 3px;
-
-			&:hover {
-				background-color: $button-hover-color;
-			}
-		}
-	}
+            &:hover {
+                background-color: $button-hover-color;
+            }
+        }
+    }
 }

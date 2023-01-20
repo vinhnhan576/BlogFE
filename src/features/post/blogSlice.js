@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, nanoid } from '@reduxjs/toolkit';
 import Axios from 'axios';
-import serverUrl from '../common';
+import authHeader from '../common/authHeader';
+import serverUrl from '../common/common';
 
 const blogUrl = 'api/blog';
 
@@ -8,7 +9,8 @@ export const getAllBlogsByUserIDAsync = createAsyncThunk(
     'blogs/getAllBlogsByUserIDAsync',
     async (userID) => {
         const response = await Axios.get(
-            `${serverUrl}${blogUrl}?userID=${userID}`
+            `${serverUrl}${blogUrl}?userID=${userID}`,
+            { headers: authHeader() }
         );
         const tasks = response.data;
         return { tasks };
@@ -19,7 +21,8 @@ export const getBlogBySlugAsync = createAsyncThunk(
     'blog/getBlogBySlugAsync',
     async (slug) => {
         const response = await Axios.get(
-            `${serverUrl}${blogUrl}/get-blog-by-slug?slug=${slug}`
+            `${serverUrl}${blogUrl}/get-blog-by-slug?slug=${slug}`,
+            { headers: authHeader() }
         );
         const tasks = response.data;
         return { tasks };
@@ -30,15 +33,17 @@ export const createNewBlogAsync = createAsyncThunk(
     'blog/createNewBlogAsync',
     async ({ blogReqData }) => {
         const formData = new FormData();
-        formData.append('title', blogReqData.title)
-        formData.append('coverImg', blogReqData.coverImg)
-        formData.append('topicID', blogReqData.topicID)
-        formData.append('slug', blogReqData.slug)
+        formData.append('title', blogReqData.title);
+        formData.append('coverImg', blogReqData.coverImg);
+        formData.append('topicID', blogReqData.topicID);
+        formData.append('slug', blogReqData.slug);
         formData.append('content', blogReqData.content);
         formData.append('quote', blogReqData.quote);
         formData.append('date', blogReqData.date);
         formData.append('location', blogReqData.date);
-        const response = await Axios.post(serverUrl + blogUrl, formData);
+        const response = await Axios.post(serverUrl + blogUrl, formData, {
+            headers: authHeader(),
+        });
         const tasks = response.data;
         return { tasks };
     }
@@ -50,6 +55,7 @@ export const updateBlogAsync = createAsyncThunk(
         const id = blogReqData.id;
         const response = await Axios.put(
             `${serverUrl}${blogUrl}/${id}`,
+            { headers: authHeader() },
             blogReqData
         );
         const tasks = response.data;
@@ -60,7 +66,9 @@ export const updateBlogAsync = createAsyncThunk(
 export const deleteBlogAsync = createAsyncThunk(
     'blog/deleteBlogAsync',
     async (id) => {
-        const response = await Axios.delete(`${serverUrl}${blogUrl}/${id}`);
+        const response = await Axios.delete(`${serverUrl}${blogUrl}/${id}`, {
+            headers: authHeader(),
+        });
         window.location.reload(false);
         const tasks = response.data;
         return { tasks };

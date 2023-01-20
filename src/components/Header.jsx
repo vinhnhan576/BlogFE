@@ -75,7 +75,8 @@ function Header(props) {
     const logoRef = useRef();
     const containerRef = useRef();
 
-    const account = useSelector(selectAccount);
+    // const account = useSelector(selectAccount);
+    const account = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
         window.addEventListener('scroll', () => {

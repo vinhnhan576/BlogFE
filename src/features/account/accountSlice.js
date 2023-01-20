@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Axios from 'axios';
 import setAuthToken from '../../setAuthToken';
-import serverUrl from '../common';
+import authHeader from '../common/authHeader';
+import serverUrl from '../common/common';
 
 const accountUrl = 'api/account';
 
@@ -52,15 +53,17 @@ export const accountSlice = createSlice({
         // 		});
         // },
         logout: (state) => {
+            localStorage.setItem('user', null)
             state.account = null;
         },
     },
     extraReducers: {
         [authenticateUserAsync.fulfilled]: (state, action) => {
             console.log('Authenticated user successfully');
-            const { token } = action.payload.tasks;
-            localStorage.setItem('jwtToken', token);
-            setAuthToken(token);
+            const account = action.payload.tasks;
+            localStorage.setItem('user', JSON.stringify(account));
+            console.log(account)
+            // setAuthToken(token);
             if (action.payload.tasks)
                 state.account = action.payload.tasks.account;
             else state.account = null;

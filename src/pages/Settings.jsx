@@ -9,15 +9,12 @@ const Settings = (props) => {
     const dispatch = useDispatch();
 
     var [src, setSrc] = useState(
-        props.blogger.profilepic === undefined
+        props.blogger.profilepic === '' ||
+            props.blogger.profilepic === undefined
             ? require('../assets/image/user/alt.png')
             : 'data:image/jpg;base64,' + props.blogger.profilepic
     );
-    var [newImg, setNewImg] = useState(
-        props.blogger.profilepic === undefined
-            ? require('../assets/image/user/alt.png')
-            : 'data:image/jpg;base64,' + props.blogger.profilepic
-    );
+    var [newImg, setNewImg] = useState();
     var [editting, setEditting] = useState(false);
     const [file, setFile] = useState();
     const [changeImg, setChangeImg] = useState(false);
@@ -69,7 +66,8 @@ const Settings = (props) => {
                             onCrop={(e) => setNewImg(e)}
                             onFileLoad={(file) => setFile(file)}
                         ></Avatar>
-                    ) : props.blogger.profilepic === undefined ? (
+                    ) : props.blogger.profilepic === '' ||
+                      props.blogger.profilepic === undefined ? (
                         <div className="Settings__left__pfp__img-container">
                             <img
                                 src={changeImg === true ? newImg : src}

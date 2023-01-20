@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import Axios from 'axios';
-import serverUrl from '../common';
+import authHeader from '../common/authHeader';
+import serverUrl from '../common/common';
 
 const topicUrl = 'api/topic';
 
@@ -8,7 +9,8 @@ export const getAllTopicsByUserIDAsync = createAsyncThunk(
     'topic/getAllTopicsByUserIDAsync',
     async (userID) => {
         const response = await Axios.get(
-            `${serverUrl}${topicUrl}?userID=${userID}`
+            `${serverUrl}${topicUrl}?userID=${userID}`,
+            { headers: authHeader() }
         );
         const tasks = response.data;
         return { tasks };
@@ -19,7 +21,8 @@ export const getAllTopicBySlugAsync = createAsyncThunk(
     'topic/getAllTopicBySlugAsync',
     async (slug) => {
         const response = await Axios.get(
-            `${serverUrl}${topicUrl}/get-topic-by-slug?slug=${slug}`
+            `${serverUrl}${topicUrl}/get-topic-by-slug?slug=${slug}`,
+            { headers: authHeader() }
         );
         const tasks = response.data;
         return { tasks };
@@ -30,7 +33,9 @@ export const createNewTopic = createAsyncThunk(
     'topic/createNewTopic',
     async ({ topic }) => {
         console.log(topic);
-        const response = await Axios.post(serverUrl + topicUrl, topic);
+        const response = await Axios.post(serverUrl + topicUrl, topic, {
+            headers: authHeader(),
+        });
         const tasks = response.data;
         return { tasks };
     }

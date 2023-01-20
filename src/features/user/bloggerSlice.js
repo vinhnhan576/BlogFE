@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "axios";
-import serverUrl from '../common';
+import authHeader from "../common/authHeader";
+import serverUrl from '../common/common';
 
 const userUrl = 'api/user';
 
@@ -8,8 +9,9 @@ export const getBloggerByAliasAsync = createAsyncThunk(
 	"api/user/getBloggerByAliasAsync",
 	async (alias) => {
 		const response = await Axios.get(
-			`${serverUrl}${userUrl}/get-user-by-alias?alias=${alias}`
-		);
+            `${serverUrl}${userUrl}/get-user-by-alias?alias=${alias}`,
+            { headers: authHeader() }
+        );
 		const tasks = response.data;
 		return { tasks };
 	}

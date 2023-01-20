@@ -45,7 +45,7 @@ const Signup = () => {
 
 	const handleSignUp = (e) => {
 		e.preventDefault();
-		console.log("form submitted");
+		console.log("registering...");
 		setAccount({ ...account, date: new Date(account.date) });
 		dispatch(createNewAccountAsync({ account }));
 		navigate("/");
@@ -136,7 +136,7 @@ const Signup = () => {
 						placeholder={"0123456789".toString()}
 					/>
 				</div> */}
-				<div className="login__form__item">
+				{/* <div className="login__form__item">
 					<div className="login__form__item__title">Ngày sinh </div>
 					<input
 						type="text"
@@ -145,7 +145,7 @@ const Signup = () => {
 						onChange={handleChange("date")}
 						// placeholder="02/11/2002"
 					/>
-				</div>
+				</div> */}
 				{/* <div className="login__form__item">
 					<div className="login__form__item__title">Địa chỉ </div>
 					<input
