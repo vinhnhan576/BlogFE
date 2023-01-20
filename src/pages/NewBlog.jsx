@@ -31,7 +31,7 @@ const NewBlog = ({ alias, blogger }) => {
         date: new Date().toLocaleDateString(),
         location: '',
         slug: '',
-        topicID: userSelector.Topic[0]._id,
+        topicID: userSelector?.Topic[0]?._id,
         coverImg: '',
     };
 
