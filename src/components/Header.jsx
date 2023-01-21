@@ -32,7 +32,7 @@ const settings = [
     },
 ];
 
-function Header(props) {
+function Header() {
     const params = useParams();
     const pathName = useLocation().pathname;
     var activeNav = mainNav.findIndex(
@@ -43,9 +43,10 @@ function Header(props) {
 
     var currentTopic;
     const blog = useSelector((state) => state.blog);
-    
+    const blogger = useSelector((state) => state.blogger);
     const user = useSelector((state) => state.user);
-    const topics = props.blogger.Topic;
+    const topics = blogger.alias === user.alias ? user.Topic : blogger.Topic;
+    console.log(topics)
     // useEffect(() => {
     // 	if (typeof slug !== "object") {
     // 		dispatch(getAllTopicBySlugAsync(slug.current));
@@ -112,7 +113,7 @@ function Header(props) {
             <div className="container" ref={containerRef}>
                 <div className="header__logo" ref={logoRef}>
                     <Link to="/BlogProject/">
-                        <p>{props?.blogger?.alias}'s Blog</p>
+                        <p>{blogger?.alias}'s Blog</p>
                     </Link>
                 </div>
                 <div className="header__menu">
@@ -137,7 +138,11 @@ function Header(props) {
                                     activeNav === index ? 'active' : ''
                                 }`}
                             >
-                                <Link to={`/${params.alias || user.alias}${item.path}`}>
+                                <Link
+                                    to={`/${params.alias || user.alias}${
+                                        item.path
+                                    }`}
+                                >
                                     {item.display}
                                 </Link>
                             </div>
@@ -159,7 +164,7 @@ function Header(props) {
                                 : 'CHỦ ĐỀ'}
                             {openTopics && (
                                 <DropdownMenu
-                                    blogger={props.blogger}
+                                    blogger={user.alias === blogger.alias? user:blogger}
                                     onclick={menuToggle}
                                 />
                             )}
@@ -184,10 +189,12 @@ function Header(props) {
                                 onClick={() => setOpenSettings(!openSettings)}
                             >
                                 {user?.profilepic !== '' &&
-                                typeof user.profilepic !==
-                                    'undefined' ? (
+                                typeof user.profilepic !== 'undefined' ? (
                                     <img
-                                        src={'data:image/jpg;base64,' + user.profilepic}
+                                        src={
+                                            'data:image/jpg;base64,' +
+                                            user.profilepic
+                                        }
                                         alt={alt}
                                     />
                                 ) : (

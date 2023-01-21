@@ -1,0 +1,37 @@
+input[type='checkbox'] {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.checkbox {
+    display: inline-block; // set to `inline-block` as `inline elements ignore `height` and `width`
+    height: 20px;
+    width: 20px;
+    background: #fff;
+    border: 2px #ddd solid;
+    // margin-right: 4px;
+    margin-left: 10px;
+    border-radius: 2px;
+
+    &__label {
+        color: $text-secondary-color;
+        font-size: 14pt;
+        font-family: 'Poppins', sans-serif;
+
+        @include flex(center,center)
+    }
+}
+
+.checkbox--active {
+    border-color: $button-primary-color;
+    background: $button-hover-color;
+
+    &__label {
+        color: white;
+    }
+}

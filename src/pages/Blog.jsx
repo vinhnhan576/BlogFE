@@ -46,7 +46,7 @@ function Blog() {
 					<div className="blog__content">
 						<div className="blog__content__title">{blog.title}</div>
 						<div className="blog__content__body">{blog.content}</div>
-						<div className="blog__content__signature">by {blogger.name}</div>
+						<div className="blog__content__signature">{blog.signature}</div>
 					</div>
 				</div>
 			</Helmet>

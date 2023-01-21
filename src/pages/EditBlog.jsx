@@ -2,16 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import namingBlogSlug from "../utils/namingSlugs";
 import {
 	getBlogBySlugAsync,
-	createNewBlogAsync,
 	updateBlogAsync,
 } from "../features/post/blogSlice";
 import Helmet from "../components/Helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { getUserByUsernameAsync } from "../features/user/userSlice";
 
 const EditBlog = ({ alias }) => {
 	const textareaRef = useRef();
@@ -38,11 +37,13 @@ const EditBlog = ({ alias }) => {
 		const image = e.target.files[0];
 	};
 
-	const imageUploadHandler = (e) => {};
+	
+    const username = JSON.parse(localStorage.getItem('user'))?.account.username;
 
-	const handleNewBlog = (e) => {
+	const handleNewBlog = async (e) => {
 		e.preventDefault();
-		dispatch(updateBlogAsync({ blogReqData: newBlog }));
+		await dispatch(updateBlogAsync({ blogReqData: newBlog }));
+		await dispatch(getUserByUsernameAsync({ username: username }));
 		navigate(`/${alias}/`);
 	};
 

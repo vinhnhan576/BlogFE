@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { getBloggerByAliasAsync } from '../features/user/bloggerSlice';
 import { getUserByUsernameAsync } from '../features/user/userSlice';
+import Checkbox from '../components/Checkbox';
 
 const NewBlog = () => {
     const textareaRef = useRef();
@@ -25,12 +26,13 @@ const NewBlog = () => {
     useEffect(() => {
         dispatch(getUserByUsernameAsync({ username: username }));
     }, [user.username, dispatch]);
-    console.log(user);
 
     var date_format = new Date().toISOString().slice(0, 10);
     // console.log(date_format);
     // const date = date_format.getMonth()+'-'+ date_format.getDate()+'-'+date_format.getFullYear()
     // console.log(date)
+
+    const [isChecked, setIsChecked] = useState(true);
 
     const initialBlogState = {
         title: '',
@@ -44,7 +46,7 @@ const NewBlog = () => {
                 ? user?.Topic[0]?._id
                 : '',
         coverImg: '',
-        published: true,
+        published: isChecked,
         signature: 'by ' + user.name,
     };
 
@@ -52,7 +54,10 @@ const NewBlog = () => {
 
     const handleChange = (input) => (event) => {
         newBlog[input] = event.target.value;
-        console.log(initialBlogState.date);
+    };
+
+    const handleChecked = (e) => {
+        newBlog.published = e;
     };
 
     const handleTitleChange = () => (event) => {
@@ -85,13 +90,13 @@ const NewBlog = () => {
     const handleNewBlog = async (e) => {
         e.preventDefault();
         if (newBlog.topicID === 0) {
-            // console.log(topic);
             const res = await dispatch(createNewTopic({ topic: topic }));
             const result = unwrapResult(res);
             newBlog.topicID = result.tasks.result._id;
         }
         await dispatch(createNewBlogAsync({ blogReqData: newBlog }));
-        await dispatch(getBloggerByAliasAsync(blogger.alias));
+        // await dispatch(getBloggerByAliasAsync(blogger.alias));
+		await dispatch(getUserByUsernameAsync({ username: username }));
         navigate(`/${blogger.alias}/`);
     };
 
@@ -137,6 +142,14 @@ const NewBlog = () => {
         <Helmet title="Tạo blog mới">
             <div className="new-blog">
                 <div className="new-blog__form__topic">
+                    <div className="new-blog__form__topic__published">
+                        <Checkbox
+                            content={'Published?'}
+                            isChecked={isChecked}
+                            setIsChecked={setIsChecked}
+                            handleChecked={handleChecked}
+                        />
+                    </div>
                     <TopicMenu topics={user.Topic}></TopicMenu>
                 </div>
                 <form className="new-blog__form" onSubmit={handleNewBlog}>

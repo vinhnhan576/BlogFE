@@ -8,8 +8,14 @@
         flex-direction: column;
         padding-top: 25px;
         &__topic {
-            margin: 0px 75px;
-            padding-top: 50px;
+			
+        @include flex(center, space-between);
+            margin: 0px 15%;
+            padding-top: 5%;
+
+			& .select{
+				width: 30%;
+			}
         }
 
         input,

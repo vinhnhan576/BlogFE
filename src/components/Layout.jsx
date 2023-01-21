@@ -13,7 +13,8 @@ function Layout() {
     const dispatch = useDispatch();
     const blogger = useSelector((state) => state.blogger);
     const user = useSelector((state) => state.user);
-    const username = JSON.parse(localStorage.getItem('user'))?.account?.username;
+    const username = JSON.parse(localStorage.getItem('user'))?.account
+        ?.username;
     useEffect(() => {
         dispatch(getBloggerByAliasAsync(alias || user.alias));
         // if (account.alias === blogger.alias) {
@@ -22,12 +23,12 @@ function Layout() {
         // 	console.log(user)
         // localStorage.setItem('user', JSON.stringify(user));
         // }
-    }, [dispatch, alias, blogger.alias, username]);
+    }, [dispatch, alias, blogger.alias, username, user.alias]);
 
     return (
         // <HashRouter>
         <div className="App">
-            <Header blogger={blogger}></Header>
+            <Header></Header>
             <div className="container">
                 <div className="main">
                     <Routes blogger={blogger} />

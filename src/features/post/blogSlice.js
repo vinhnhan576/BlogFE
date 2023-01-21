@@ -41,7 +41,7 @@ export const createNewBlogAsync = createAsyncThunk(
         formData.append('quote', blogReqData.quote);
         formData.append('date', blogReqData.date);
         formData.append('location', blogReqData.location);
-        formData.append('published', blogReqData.published)
+        formData.append('published', blogReqData.published);
         formData.append('signature', blogReqData.signature);
         const response = await Axios.post(serverUrl + blogUrl, formData, {
             headers: authHeader(),
@@ -54,11 +54,26 @@ export const createNewBlogAsync = createAsyncThunk(
 export const updateBlogAsync = createAsyncThunk(
     'blog/updateBlogAsync',
     async ({ blogReqData }) => {
-        const id = blogReqData.id;
+        const id = blogReqData._id;
+        const formData = new FormData();
+        console.log(id);
+        blogReqData.title && formData.append('title', blogReqData.title);
+        blogReqData.coverImg &&
+            formData.append('coverImg', blogReqData.coverImg);
+        blogReqData.topicID && formData.append('topicID', blogReqData.topicID);
+        blogReqData.slug && formData.append('slug', blogReqData.slug);
+        blogReqData.content && formData.append('content', blogReqData.content);
+        blogReqData.quote && formData.append('quote', blogReqData.quote);
+        blogReqData.date && formData.append('date', blogReqData.date);
+        blogReqData.location &&
+            formData.append('location', blogReqData.location);
+        formData.append('published', blogReqData.published);
+        blogReqData.signature &&
+            formData.append('signature', blogReqData.signature);
         const response = await Axios.put(
             `${serverUrl}${blogUrl}/${id}`,
-            { headers: authHeader() },
-            blogReqData
+            formData,
+            { headers: authHeader() }
         );
         const tasks = response.data;
         return { tasks };

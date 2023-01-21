@@ -1,54 +1,54 @@
-import React, { useRef } from "react";
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import MessageBox from "./MessageBox";
-import { deleteBlogAsync } from "../features/post/blogSlice";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useRef } from 'react';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import MessageBox from './MessageBox';
+import { deleteBlogAsync } from '../features/post/blogSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-import alt from "../assets/image/blog/alt.jpg";
+import alt from '../assets/image/blog/alt.jpg';
 
 const CategoryCard = (props) => {
-	const dispatch = useDispatch();
-	const params = useParams();
-	const bodyImageRef = useRef();
-	const onImgLoad = ({ target: img }) => {
-		const { offsetHeight, offsetWidth } = img;
-		if (offsetWidth > offsetHeight)
-			bodyImageRef.current.classList.add("landscape");
-		else bodyImageRef.current.classList.add("portrait");
-	};
+    const dispatch = useDispatch();
+    const params = useParams();
+    const bodyImageRef = useRef();
+    const onImgLoad = ({ target: img }) => {
+        const { offsetHeight, offsetWidth } = img;
+        if (offsetWidth > offsetHeight)
+            bodyImageRef.current.classList.add('landscape');
+        else bodyImageRef.current.classList.add('portrait');
+    };
 
-	const [openMessageBox, setOpenMessageBox] = useState(false);
+    const [openMessageBox, setOpenMessageBox] = useState(false);
 
-	const [messageBoxType, setMessageBoxType] = useState();
+    const [messageBoxType, setMessageBoxType] = useState();
 
-	const publish = useRef();
-	const store = useRef();
+    const publish = useRef();
+    const store = useRef();
 
-	const onCheckButtonClick = () => {
-		setOpenMessageBox(false);
-		dispatch(deleteBlogAsync(props.id));
-	};
+    const onCheckButtonClick = () => {
+        setOpenMessageBox(false);
+        dispatch(deleteBlogAsync(props.id));
+    };
 
-	const onCloseButtonClick = () => {
-		setOpenMessageBox(false);
-	};
+    const onCloseButtonClick = () => {
+        setOpenMessageBox(false);
+    };
 
-	const user = useSelector((state) => state.user);
-	const blogger = useSelector((state) => state.blogger);
+    const user = useSelector((state) => state.user);
+    const blogger = useSelector((state) => state.blogger);
+    const isUser = user.alias === blogger.alias;
 
-	const isEqual = (...objects) =>
-		objects.every((obj) => JSON.stringify(obj) === JSON.stringify(objects[0]));
-	const isLoggedIn = user.alias === blogger.alias;
-
-	return (
+    return (
         <div className="category_container" id={props.id}>
             <Link to={`/${params.alias}/blog/${props.slug}`}>
                 <div className="category_container-image" ref={bodyImageRef}>
                     {props.img !== undefined ? (
                         <img
                             onLoad={onImgLoad}
-                            src={'data:image/jpg;base64,' + props.img.toString('base64')}
+                            src={
+                                'data:image/jpg;base64,' +
+                                props.img.toString('base64')
+                            }
                             alt=""
                         />
                     ) : (
@@ -61,25 +61,31 @@ const CategoryCard = (props) => {
                     <p>{props.content}</p>
                 </div>
             </Link>
-            {isLoggedIn && (
+            {isUser && (
                 <div className="category_container-functions">
                     <div className="category_container-functions-left">
                         <i
-							className="bx bx-paper-plane"
-							ref={publish}
-							onClick={() => {
-								setOpenMessageBox(!openMessageBox);
-								setMessageBoxType("Xuất bản");
-								store.current.classList.toggle("hidden");
-							}}></i>
-						<i
-							className="bx bxs-box hidden"
-							ref={store}
-							onClick={() => {
-								setOpenMessageBox(!openMessageBox);
-								setMessageBoxType("Lưu trữ");
-								publish.current.classList.toggle("hidden");
-							}}></i>
+                            className={`bx bx-paper-plane ${
+                                props.published ? 'hidden' : ''
+                            }`}
+                            ref={publish}
+                            onClick={() => {
+                                setOpenMessageBox(!openMessageBox);
+                                setMessageBoxType('Xuất bản');
+                                // store.current.classList.toggle('hidden');
+                            }}
+                        ></i>
+                        <i
+                            className={`bx bxs-box ${
+                                props.published ? '' : 'hidden'
+                            }`}
+                            ref={store}
+                            onClick={() => {
+                                setOpenMessageBox(!openMessageBox);
+                                setMessageBoxType('Lưu trữ');
+                                // publish.current.classList.toggle('hidden');
+                            }}
+                        ></i>
                     </div>
 
                     <div className="category_container-functions-right">
@@ -102,6 +108,7 @@ const CategoryCard = (props) => {
             )}
             {openMessageBox && (
                 <MessageBox
+                    _id={props.id}
                     alias={params.alias}
                     slug={props.slug}
                     title={`${messageBoxType} blog`}

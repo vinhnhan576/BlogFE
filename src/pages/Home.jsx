@@ -12,6 +12,9 @@ function Home() {
 	
     const user = useSelector((state) => state.user);
     const blogger = useSelector((state) => state.blogger);
+
+	const topic = blogger.alias === user.alias ? user.Topic:blogger.Topic;
+	console.log(blogger)
     // const userID = blogger.id;
     // const dispatch = useDispatch();
     // useEffect(() => {
@@ -19,7 +22,7 @@ function Home() {
     // }, [dispatch, userID]);
     var allTopicElements;
     if (blogger._id) {
-        allTopicElements = blogger.Topic.map((topic, index) => {
+        allTopicElements = topic.map((topic, index) => {
             return (
                 <Topic
                     key={index}
