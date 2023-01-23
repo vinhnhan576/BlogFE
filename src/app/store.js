@@ -4,6 +4,7 @@ import userReducer from '../features/user/userSlice';
 import accountReducer from '../features/account/accountSlice';
 import topicReducer from '../features/topic/topicSlice';
 import bloggerReducer from '../features/user/bloggerSlice';
+import commentSlice from '../features/comment/commentSlice';
 
 const initialState = {};
 
@@ -14,6 +15,7 @@ export default configureStore({
         account: accountReducer,
         topic: topicReducer,
         blogger: bloggerReducer,
+        comment: commentSlice,
     },
     preloadedState: initialState,
 });

@@ -1,0 +1,79 @@
+.reply {
+    &__container {
+        @include flex(flex-start, flex-start);
+        margin-top: 10px;
+        position: relative;
+        top: 15px;
+
+        &.head{
+            margin-bottom: 60px;
+        }
+    }
+
+    &__connect-line {
+        border-top: 2px solid white;
+        bottom: -45px;
+        right: 50px;
+        width: 40px;
+        // margin-left: -70px;
+        position: relative;
+    }
+
+    &__comment-area {
+        width: 100%;
+        @include flex(flex-end, flex-start);
+    }
+
+    &__pfp {
+        background: white;
+        height: 40px;
+        width: 42px;
+        border-radius: 50%;
+        margin-right: 15px;
+
+        &.head{
+            height: 50px;
+            width: 52px;
+        }
+    }
+
+    &__input {
+        width: 70%;
+        outline: none;
+        border: none;
+        padding: 10px 15px;
+        background: $primary-bg;
+        color: $text-primary-color;
+        border: 2px solid $text-secondary-color;
+        border-radius: 12px;
+        // margin: 10px 0;
+
+        &::-webkit-input-placeholder {
+            color: $text-secondary-color;
+        }
+
+        &:is(:focus) {
+            border-color: white;
+            border-width: 3px;
+            height: 60px;
+        }
+
+        resize: none;
+        height: 45px;
+        text-align: justify;
+        font-size: 1rem;
+
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+    }
+
+    &__post-button {
+        color: white;
+        position: relative;
+        bottom: 7px;
+        right: 40px;
+        cursor: pointer;
+        font-size: 15pt;
+    }
+}

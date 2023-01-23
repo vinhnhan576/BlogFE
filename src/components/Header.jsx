@@ -46,7 +46,6 @@ function Header() {
     const blogger = useSelector((state) => state.blogger);
     const user = useSelector((state) => state.user);
     const topics = blogger.alias === user.alias ? user.Topic : blogger.Topic;
-    console.log(topics)
     // useEffect(() => {
     // 	if (typeof slug !== "object") {
     // 		dispatch(getAllTopicBySlugAsync(slug.current));
