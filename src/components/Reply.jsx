@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     createNewComment,
     getAllCommentsByBlogAsync,
 } from '../features/comment/commentSlice';
+import alt from '../assets/image/user/alt.png';
 
 const Reply = ({
     blogID,
@@ -16,6 +17,7 @@ const Reply = ({
     const dispatch = useDispatch();
     const textareaRef = useRef();
     const [context, setContext] = useState('');
+    const user = useSelector((state) => state.user);
 
     const makeNewComment = async () => {
         if (context) {
@@ -38,14 +40,17 @@ const Reply = ({
         <div className="reply">
             {/* {!isHeadComment && <div className="reply__connect-line"></div>} */}
             <div className={`reply__container ${isHeadComment ? 'head' : ''}`}>
-                {/* <input
-                    className="reply__input"
-                    type="text"
-                    onChange={(e) => setContext(e.target.value)}
-                /> */}
-                <div
-                    className={`reply__pfp ${isHeadComment ? 'head' : ''}`}
-                ></div>
+                <div className={`reply__pfp ${isHeadComment ? 'head' : ''}`}>
+                    {user?.profilepic !== '' &&
+                    user?.profilepic !== undefined ? (
+                        <img
+                            src={'data:image/jpg;base64,' + user?.profilepic}
+                            alt={alt}
+                        />
+                    ) : (
+                        <img src={alt} alt={alt} />
+                    )}
+                </div>
                 <div className="reply__comment-area">
                     <textarea
                         type="text"

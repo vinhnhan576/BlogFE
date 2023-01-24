@@ -5,7 +5,7 @@
         position: relative;
         top: 15px;
 
-        &.head{
+        &.head {
             margin-bottom: 60px;
         }
     }
@@ -25,15 +25,22 @@
     }
 
     &__pfp {
-        background: white;
         height: 40px;
         width: 42px;
         border-radius: 50%;
         margin-right: 15px;
+        @include flex(center, center);
+        overflow: hidden;
 
-        &.head{
-            height: 50px;
-            width: 52px;
+        &.head {
+            height: 45px;
+            width: 47px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 
@@ -41,7 +48,8 @@
         width: 70%;
         outline: none;
         border: none;
-        padding: 10px 15px;
+        padding: 10px 60px 20px 15px;
+        // padding-right: 60px;
         background: $primary-bg;
         color: $text-primary-color;
         border: 2px solid $text-secondary-color;

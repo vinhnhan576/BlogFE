@@ -1,16 +1,41 @@
 import React from 'react';
 import { useState } from 'react';
 import Reply from './Reply';
+import alt from '../assets/image/user/alt.png';
 
-const Comment = ({ comment, alias, pfp, head, lastchild, blogID, userID }) => {
+const Comment = ({
+    comment,
+    alias,
+    pfp,
+    head,
+    lastchild,
+    blogID,
+    userID,
+    commentUser,
+}) => {
     const [showReplies, setShowReplies] = useState(false);
     const [newReply, setNewReply] = useState(false);
+
+    const user = commentUser.find((user) => user._id === comment.userID);
 
     return (
         <div className="comment">
             <div className={`comment__card`}>
                 <div className="comment__card__left">
-                    <div className="comment__card__left__pfp"></div>
+                    <div className="comment__card__left__pfp">
+                        {user?.profilepic !== '' &&
+                        user?.profilepic !== undefined ? (
+                            <img
+                                src={
+                                    'data:image/jpg;base64,' +
+                                    user?.profilepic
+                                }
+                                alt={alt}
+                            />
+                        ) : (
+                            <img src={alt} alt={alt} />
+                        )}
+                    </div>
                     {/* {!head && (
                         <div className="comment__card__left__connectline"></div>
                     )} */}
@@ -26,7 +51,7 @@ const Comment = ({ comment, alias, pfp, head, lastchild, blogID, userID }) => {
                 >
                     <div className="comment__card__right__title">
                         <div className="comment__card__right__title__alias">
-                            {alias}
+                            {user?.alias}
                         </div>
                         <div className="comment__card__right__title__timestamp">
                             {/* {comment.createdAt.slice(0, 16)} */}
@@ -60,6 +85,7 @@ const Comment = ({ comment, alias, pfp, head, lastchild, blogID, userID }) => {
                                         head={false}
                                         blogID={blogID}
                                         userID={userID}
+                                        commentUser={commentUser}
                                         lastchild={
                                             index ===
                                             comment.children.length - 1
@@ -109,22 +135,13 @@ const showingTimestamp = (timestamp) => {
             if (date.getDate() === now.getDate()) {
                 if (date.getHours() === now.getHours()) {
                     if (date.getMinutes() === now.getMinutes()) {
-                        return (
-                            Math.floor(Math.abs(now - date) / 1000) + 'sec'
-                        );
+                        return Math.floor(Math.abs(now - date) / 1000) + 'sec';
                     }
-                    return (
-                        Math.floor(Math.abs(now - date) / 1000 / 60) + 'm'
-                    );
+                    return Math.floor(Math.abs(now - date) / 1000 / 60) + 'm';
                 }
-                return (
-                    Math.floor(Math.abs(now - date) / 1000 / 60 / 24) +
-                    'h'
-                );
+                return Math.floor(Math.abs(now - date) / 1000 / 60 / 24) + 'h';
             }
-            return (
-                Math.floor(Math.abs(now - date) / 1000 / 60 / 60 / 24) + 'd'
-            );
+            return Math.floor(Math.abs(now - date) / 1000 / 60 / 60 / 24) + 'd';
         }
 };
 

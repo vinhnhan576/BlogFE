@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { getBlogBySlugAsync } from '../features/post/blogSlice';
 import Helmet from '../components/Helmet';
@@ -13,6 +13,9 @@ import {
 } from '../features/comment/commentSlice';
 import { useState } from 'react';
 import Reply from '../components/Reply';
+import { getBloggerByUserID } from '../features/user/bloggerSlice';
+import axios, { Axios } from 'axios';
+import serverUrl from '../features/common/common';
 
 function Blog() {
     const params = useParams();
@@ -27,16 +30,39 @@ function Blog() {
         ? blogs?.find((blog) => blog.slug === slug)
         : blogs;
 
+    const [commentUser, setCommentUser] = useState([]);
     async function getBlog() {
         await dispatch(getBlogBySlugAsync(slug));
+        await dispatch(getAllCommentsByBlogAsync(blog?._id));
     }
 
     useEffect(() => {
         getBlog();
-        dispatch(getAllCommentsByBlogAsync(blog?._id));
     }, [dispatch, slug, blog?._id]);
 
-    
+    useEffect(() => {
+        const fetchData = async () => {
+            const commentUserID = [
+                ...new Set(comments.map((comment) => comment.userID)),
+            ];
+            console.log(commentUserID);
+
+            await Promise.all(
+                commentUserID.map(async (userID) => {
+                    const result = (
+                        await axios(
+                            `${serverUrl}api/user/get-user-by-id?userID=${userID}`
+                        )
+                    ).data.result;
+                    setCommentUser([...commentUser, result]);
+                    commentUser.push(result);
+                })
+            );
+            console.log(commentUser);
+        };
+        fetchData();
+    }, [comments]);
+
     // console.log(comments);
 
     if (typeof blog === 'object')
@@ -78,17 +104,20 @@ function Blog() {
                         isHeadComment={true}
                         parentID=""
                     />
-                    {comments.map((comment) => { return (
-                        <Comment
-                            comment={comment}
-                            key={comment._id}
-                            blogID={blog._id}
-                            userID={user._id}
-                            alias={blogger.alias}
-                            head={true}
-                            lastchild={false}
-                        />
-                    )})}
+                    {comments.map((comment) => {
+                        return (
+                            <Comment
+                                comment={comment}
+                                key={comment._id}
+                                blogID={blog._id}
+                                userID={user._id}
+                                commentUser={commentUser}
+                                alias={blogger.alias}
+                                head={true}
+                                lastchild={false}
+                            />
+                        );
+                    })}
                 </div>
             </Helmet>
         );
