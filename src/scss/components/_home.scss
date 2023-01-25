@@ -2,12 +2,47 @@ $new-blog-pfp-size: 6rem;
 $new-blog-mobile-pfp-size: 2.5rem;
 
 .home {
-    padding-top: 60px;
+    padding-top: 80px;
     @include flex(center, center);
     flex-direction: column;
 
     @include mobile {
         padding-top: 20px;
+    }
+
+    &__top-bloggers {
+        // background: black;
+        // border: 3px solid white;
+        // border-radius: 7px;
+        width: 90%;
+        margin-bottom: 60px;
+        @include flex(center, center);
+        flex-direction: column;
+
+        &__title {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 28pt;
+            font-family: 'Josefin Sans', sans-serif;
+            @include mobile {
+                font-size: 16pt;
+            }
+
+            & #image2 {
+                transform: rotateY(180deg);
+            }
+
+            p {
+                display: inline-block;
+                margin: 0 10px;
+                position: relative;
+                bottom: 12px;
+            }
+        }
+
+        &__bloggers {
+            @include flex(center, center);
+        }
     }
 
     &__link {

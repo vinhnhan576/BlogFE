@@ -46,6 +46,6 @@ export const bloggerSlice = createSlice({
 
 export const {} = bloggerSlice.actions;
 
-export const selectBlogger = (state) => state.blogger.blogger;
+export const selectBlogger = (state) => state.blogger;
 
 export default bloggerSlice.reducer;

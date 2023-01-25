@@ -47,21 +47,24 @@ function Blog() {
             ];
             console.log(commentUserID);
 
+            var user = [];
             await Promise.all(
                 commentUserID.map(async (userID) => {
-                    const result = (
-                        await axios(
-                            `${serverUrl}api/user/get-user-by-id?userID=${userID}`
-                        )
-                    ).data.result;
-                    setCommentUser([...commentUser, result]);
-                    commentUser.push(result);
+                    await axios(
+                        `${serverUrl}api/user/get-user-by-id?userID=${userID}`
+                    ).then((response) => {
+                        console.log(response.data.result);
+                        user.push(response.data.result);
+                    });
+                    // commentUser.push(result);
                 })
             );
-            console.log(commentUser);
+            setCommentUser(user);
         };
         fetchData();
     }, [comments]);
+
+    console.log(commentUser);
 
     // console.log(comments);
 

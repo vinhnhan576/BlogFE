@@ -4,9 +4,15 @@
         margin-top: 10px;
         position: relative;
         top: 15px;
+        @include mobile {
+            margin-top: 3px;
+        }
 
         &.head {
             margin-bottom: 60px;
+            @include mobile {
+                margin-bottom: 40px;
+            }
         }
     }
 
@@ -27,6 +33,10 @@
     &__pfp {
         height: 40px;
         width: 42px;
+        @include mobile {
+            height: 32px;
+            width: 38px;
+        }
         border-radius: 50%;
         margin-right: 15px;
         @include flex(center, center);
@@ -35,6 +45,10 @@
         &.head {
             height: 45px;
             width: 47px;
+            @include mobile {
+                height: 35px;
+                width: 41px;
+            }
         }
 
         img {
@@ -45,7 +59,7 @@
     }
 
     &__input {
-        width: 70%;
+        width: 80%;
         outline: none;
         border: none;
         padding: 10px 60px 20px 15px;
@@ -55,6 +69,10 @@
         border: 2px solid $text-secondary-color;
         border-radius: 12px;
         // margin: 10px 0;
+        @include mobile {
+            font-size: 8pt;
+            width: 90%;
+        }
 
         &::-webkit-input-placeholder {
             color: $text-secondary-color;
@@ -83,5 +101,10 @@
         right: 40px;
         cursor: pointer;
         font-size: 15pt;
+
+        @include mobile {
+            right: 25px;
+            font-size: 10pt;
+        }
     }
 }

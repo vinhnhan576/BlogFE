@@ -60,8 +60,10 @@ const Reply = ({
                         ref={textareaRef}
                         onChange={(e) => setContext(e.target.value)}
                         onBlur={(e) => {
-                            if (e.target.value === '')
+                            if (e.target.value === '') {
                                 textareaRef.current.style.height = '45px';
+                                
+                            }
                         }}
                         onFocus={(e) => {
                             if (e.target.value === '')

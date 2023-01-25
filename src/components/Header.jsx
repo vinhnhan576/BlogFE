@@ -112,7 +112,7 @@ function Header() {
             <div className="container" ref={containerRef}>
                 <div className="header__logo" ref={logoRef}>
                     <Link to="/BlogProject/">
-                        <p>{blogger?.alias}'s Blog</p>
+                        <p>{blogger?.alias}</p>
                     </Link>
                 </div>
                 <div className="header__menu">
