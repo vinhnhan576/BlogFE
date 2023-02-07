@@ -1,16 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Roboto+Slab:wght@100;200;300;400;500;600&family=Roboto:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Roboto+Slab:wght@100;200;300;400;500;600&family=Roboto:wght@700&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Genos:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Roboto+Slab:wght@100;200;300;400;500;600&family=Roboto:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Genos:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Roboto+Slab:wght@100;200;300;400;500;600&family=Roboto:wght@700&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500;700;800&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap');
 
@@ -19,84 +19,137 @@
 @import url('https://fonts.googleapis.com/css2?family=Qwitcher+Grypen&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&family=Jost:wght@300;400;500;600;700;800&display=swap');
 
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	// user-select: none;
-	-webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    // user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 ::selection {
-  color: black;
-  background: white;
+    color: white;
+    background: rgb(21, 64, 132);
 }
 
 body {
-	font-size: 13px;
-	font-family: "Roboto", sans-serif;
-	background-color: $primary-bg;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    background-color: $primary-bg;
 }
 
 ul {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 a {
-	text-decoration: none;
-	color: unset;
+    text-decoration: none;
+    color: unset;
 
-	&:hover {
-		color: $text-primary-color;
-	}
+    &:hover {
+        color: $text-primary-color;
+    }
 }
 
 i {
-	color: $primary-color;
+    color: $primary-color;
+}
+
+input {
+    height: 3.15rem;
+    width: 21rem;
+    padding: 4% 4%;
+    border: 2px solid $input-border-color;
+    border-radius: 0.5rem;
+    // padding: 0 1.2rem;
+    transition: background-color 0.25s ease-out, border 0.2s ease-out;
+    // width: 360px;
+    // line-height: 36px;
+    // font-family: 'Lobster', cursive;
+    // font-size: 21px;
+    // background: $primary-color;
+    // color: $text-inverted-color;
+    // outline: none;
+    // border: none;
+    // padding: 0 15px;
+    // // padding-left: 20px;
+    // border-radius: 10px;
+    background: #f9fafa;
+}
+
+input:focus,
+input:hover {
+    // font-size: 11pt;
+    outline: none;
+    border-color: $input-border-color-focus;
+    background-color: white;
+}
+input:focus + .login__form__item__placeholder-text .login__form__item__text,
+:not(input[value=''])
+    + .login__form__item__placeholder-text
+    .login__form__item__text,
+input[autocompleted]
+    + .login__form__item__placeholder-text
+    .login__form__item__text {
+    background-color: white;
+    font-size: 7pt;
+    color: $text-inverted-color;
+    transform: translate(0, -220%);
+}
+
+input:not(input[value='']) {
+    background-color: white;
 }
 
 .container {
-	width: 100%;
-	max-width: 1620px;
-	padding: 0 50px;
-	margin: auto;
+    width: 100%;
+    max-width: 1620px;
+    padding: 0 50px;
+    margin: auto;
 
-	@include tablet {
-		padding: 0 20px;
-	}
+    @include tablet {
+        padding: 0 20px;
+    }
 
-	@include mobile {
-		padding: 0 10px;
-	}
+    @include mobile {
+        padding: 0 10px;
+    }
 }
 
 .main {
-	margin-top: $header-height;
-	margin-bottom: 2rem;
-	min-height: 100vh;
+    margin-top: $header-height;
+    margin-bottom: 2rem;
+    min-height: 100vh;
 
-	@include tablet {
-		margin-top: calc(#{$header-tablet-height} + 20px);
-	}
+    @include tablet {
+        margin-top: calc(#{$header-tablet-height} + 20px);
+    }
 
-	@include mobile {
-		margin-top: calc(#{$header-mobile-height} + 10px);
-	}
+    @include mobile {
+        margin-top: calc(#{$header-mobile-height} + 10px);
+    }
 }
 
 body::-webkit-scrollbar {
-	width: 10px;
+    width: 10px;
 }
 body::-webkit-scrollbar-track {
-	background: rgb(255, 255, 255);
+    background: rgb(255, 255, 255);
 }
 body::-webkit-scrollbar-thumb {
-	background-color: $primary-bg;
-	border-radius: 20px;
-	// border: 2px solid rgb(100, 40, 19);
+    background-color: $primary-bg;
+    border-radius: 20px;
+    // border: 2px solid rgb(100, 40, 19);
 }
 body::-webkit-scrollbar-thumb:hover {
-  background: rgba(134, 96, 75, 0.749);
+    background: rgba(134, 96, 75, 0.749);
 }

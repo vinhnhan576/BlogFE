@@ -1,121 +1,437 @@
+$login-page-border-radius: 1%;
+
 .login {
-	@include mobile {
-		@include flex(center, center);
-	}
+    // @include mobile {
+    width: 100vw;
+    height: 100vh;
+    @include flex(center, center);
+    @include tablet {
+        display: block;
+        overflow: hidden;
+    }
+    // }
 
-	&__image {
-		position: absolute;
-		top: 12%;
-		left: 4%;
-		z-index: 1;
+    &__container {
+        width: 70vw;
+        height: 85vh;
+        @include flex(center, center);
+        border-radius: $login-page-border-radius;
+        box-shadow: $full-shadow;
 
-		// &.signup{
-		// 	left: 8%;
-		// 	animation: left .3s ease-in-out;
-		// }
+        @include tablet {
+            width: 200vw;
+            height: 100vh;
+        }
+    }
 
-		&__after {
-		}
+    &__left {
+        @include flex(center, center);
+        height: 100%;
+        width: 50%;
+        background: linear-gradient(
+                rgba(25, 31, 200, 0.092),
+                rgba(0, 0, 0, 0.085)
+            ),
+            url('../../assets/image/login/pastel_background.jpg');
+        // background: url('../../assets/image/login/pastel_background.jpg');
+        background-position: right bottom;
+        background-size: cover;
+        background-repeat: no-repeat;
+        // background-position: center;
+        border-top-left-radius: $login-page-border-radius;
+        border-bottom-left-radius: $login-page-border-radius;
+        user-select: none;
+        @include zoom;
+        flex-direction: column;
 
-		img {
-			height: 560px;
-		}
+        @include mobile {
+            width: 100vw;
+        }
 
-		@include mobile {
-			display: none;
-			// position: relative;
-		}
-		@include tablet {
-			display: none;
-		}
-	}
+        @include tablet {
+            width: 100vw;
+            @include flex(center, flex-start);
+            background: white;
+            padding: 7px 7px;
+        }
 
-	&__logo {
-		margin-bottom: 40px;
+        // &.signup{
+        // 	left: 8%;
+        // 	animation: left .3s ease-in-out;
+        // }
 
-		img {
-			height: 200px;
-		}
-	}
+        &__bg {
+            height: 60%;
+            width: 75%;
+            background: #f6f9fe61;
+            position: relative;
+            border-radius: 0.5%;
+            @include flex(center, center);
+            padding: 30px 30px;
 
-	&__form {
-		display: block;
-		position: absolute;
-		height: 100vh;
-		width: 64%;
-		right: 0;
-		@include flex(center, center);
-		flex-direction: column;
+            @include tablet {
+                height: 55%;
+                width: 100%;
+                border-bottom-left-radius: 7rem;
+                border-bottom-right-radius: 7rem;
+                border-radius: 0.5rem;
+                background: #183e9eb8;
+                background: linear-gradient(
+                        rgba(25, 31, 200, 0.092),
+                        rgba(0, 0, 0, 0.085)
+                    ),
+                    url('../../assets/image/login/pastel_background.jpg');
+                background-position: left;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            // opacity: 0.3;
 
-		@include mobile {
-			position: relative;
-			background-image: url(../../assets/image/login/login-mobile.png);
-		}
+            &__pic1 {
+                height: 108%;
+                position: absolute;
+                top: -22%;
+                // left: 12%;
+                transform: rotateZ(-5deg);
 
-		@include tablet {
-			width: 100%;
-			background-image: url(../../assets/image/login/login-mobile.png);
-		}
+                @include tablet {
+                    height: 80%;
+                    top: 7%;
+                }
+            }
 
-		&__item {
-			margin-bottom: 20px;
+            &__pic2 {
+                height: 250px;
+                position: absolute;
+                top: 24%;
+                transform: rotateZ(15deg);
+                right: -5%;
+            }
 
-			&__title {
-				font-family: "Lobster", cursive;
-				font-size: 21px;
-				color: $text-primary-color;
-			}
+            &__message {
+                position: relative;
+                top: 43%;
+                // left: 6%;
+                // color: white;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: rgb(130, 173, 204);
+                font-family: 'Jost', sans-serif;
+                text-align: center;
+                line-height: 0.95;
+                @include tablet {
+                    display: none;
+                }
+                &__upper {
+                }
 
-			input {
-				width: 360px;
-				line-height: 36px;
-				font-family: "Lobster", cursive;
-				font-size: 21px;
-				background: $primary-color;
-				color: $text-inverted-color;
-				outline: none;
-				border: none;
-				padding: 0 15px;
-				// padding-left: 20px;
-				border-radius: 18px;
-			}
+                &__lower {
+                    // width: max-content;
 
-			&__whole {
-				@include flex(center, center);
-				&__small {
-					&__title {
-						display: flex;
-						font-family: "Lobster", cursive;
-						font-size: 21px;
-						color: $text-primary-color;
-						input {
-							width: 170px;
-							margin-right: 10px;
-							margin-left: 10px;
-						}
-					}
-				}
-			}
-		}
+                    &__highlight {
+                        font-size: 1.75rem;
+                        // color: transparent;
+                        background: linear-gradient(
+                            rgb(39, 128, 192),
+                            rgb(155, 194, 222),
+                            rgb(214, 160, 221),
+                            rgb(170, 76, 177)
+                        );
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        // text-shadow: 2px 2px 0 rgb(130, 173, 204);
+                    }
+                }
+            }
 
-		&__button {
-			width: 360px;
-			height: 45px;
-			font-family: "Lobster", cursive;
-			font-size: 28px;
-			background-color: $button-primary-color;
-			color: $text-primary-color;
-			outline: none;
-			border: none;
-			cursor: pointer;
-			border-radius: 12px;
-			margin: 5px 3px;
-		}
+            transition: all 1s ease-in-out;
+            &.login-clicked {
+                transform: translateY(-110%);
+                opacity: 0;
+            }
+        }
 
-		&__login-button {
-			@include mobile {
-				margin-top: 50px;
-			}
-		}
-	}
+        &__login-btn {
+            // position: relative;
+            // top: 30%;
+            width: 88% !important;
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+        }
+    }
+
+    &__lower {
+        height: 25%;
+        top: 10%;
+        position: relative;
+        width: 100vw;
+        flex-grow: 1;
+        flex-direction: column;
+        padding-bottom: 1rem;
+        display: none;
+
+        @include tablet {
+            @include flex(center, flex-end);
+        }
+
+        &__or {
+            width: 75% !important;
+            margin: 5% 0 2.5% 0 !important;
+        }
+
+        &__message {
+            font-size: 1.75rem;
+            font-weight: 600;
+            font-family: 'Jost', sans-serif;
+            max-width: 80%;
+            text-align: center;
+            line-height: 0.9;
+            background: linear-gradient(
+                rgb(39, 128, 192),
+                rgb(155, 194, 222),
+                rgb(214, 160, 221),
+                rgb(177, 76, 177)
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            margin-bottom: 2rem;
+        }
+
+        transition: all 1s ease-in-out;
+        &.login-clicked {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+    }
+
+    &__logo {
+        margin-bottom: 2rem;
+
+        img {
+            height: 50px;
+        }
+
+        @include tablet {
+            opacity: 0;
+        }
+
+        &__mobile {
+            display: none;
+            position: absolute;
+            height: 70px;
+            top: 57%;
+            z-index: 999;
+            @include tablet {
+                display: block;
+            }
+
+            img {
+                height: 70px;
+            }
+
+            transition: all 1s ease-in-out;
+            &.login-clicked {
+                top: 22%;
+                transform: scale(75%);
+            }
+        }
+    }
+
+    &__welcome {
+        font-size: 2.55rem;
+        font-weight: 500;
+    }
+
+    &__welcome2 {
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 12%;
+        color: rgb(184, 184, 184);
+        letter-spacing: 0.75px;
+        line-height: 1.4;
+        font-size: 100%;
+    }
+
+    &__right {
+        padding-top: 3%;
+        height: 100%;
+        width: 50%;
+        @include flex(center, center);
+        background: $primary-color;
+        border-top-right-radius: $login-page-border-radius;
+        border-bottom-right-radius: $login-page-border-radius;
+        @include zoom;
+        @include tablet {
+            width: 100vw;
+            background: transparent;
+            transition: all 1s ease-in-out;
+        }
+
+        &.login-clicked {
+            transform: translateX(-100%);
+        }
+
+        &__back {
+            position: absolute;
+            top: 3%;
+            left: 7%;
+            font-size: 2rem;
+            font-weight: 600;
+            color: $button-primary-color;
+            font-family: 'Poppins', sans-serif;
+            display: none;
+            &.login-clicked {
+                display: block;
+            }
+        }
+    }
+
+    &__form {
+        @include flex(center, center);
+        flex-direction: column;
+
+        @include tablet {
+            width: 100%;
+        }
+
+        &__item {
+            margin-bottom: 6%;
+            position: relative;
+
+            &__title {
+                font-family: 'Lobster', cursive;
+                font-size: 21px;
+                color: $text-primary-color;
+            }
+
+            input {
+                &:focus
+                    + .login__form__item__placeholder-text
+                    .login__form__item__text {
+                    border-color: $input-border-color-focus;
+                    color: $input-border-color-focus;
+                    background: white;
+                }
+            }
+
+            &__placeholder-text {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                border: 3px solid transparent;
+                background-color: transparent;
+                display: flex;
+                align-items: center;
+                pointer-events: none;
+                padding: 0 0.9rem;
+            }
+
+            &__text {
+                font-size: 11pt;
+                padding: 0 0.4rem;
+                background-color: transparent;
+                color: $text-inverted-color;
+                transform: translate(0);
+                transition: transform 0.15s ease-out, font-size 0.15s ease-out,
+                    background-color 0.2s ease-out, color 0.15s ease-out;
+            }
+        }
+
+        &__button {
+            height: 3.15rem;
+            width: 21rem;
+            // font-family: 'Lobster', cursive;
+            font-size: 14pt;
+            background-color: $button-primary-color;
+            color: white;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            margin: 5px 3px;
+
+            // &:first-child{
+            // }
+        }
+
+        &__login-button {
+            // margin-top: 30px;
+            @include mobile {
+                margin-top: 50px;
+            }
+        }
+
+        &__or {
+            border-top: 1px solid rgb(199, 199, 199);
+            width: 18rem;
+            text-align: center;
+            margin: 10% 0 8% 0;
+            @include flex(center, center);
+
+            &__text {
+                width: fit-content;
+                background: white;
+                color: rgb(199, 199, 199);
+                padding: 0 7%;
+                font-size: 10pt;
+                transform: translateY(-63%);
+            }
+
+            &.login__right__or {
+                @include tablet {
+                    display: none;
+                }
+            }
+        }
+
+        &__find {
+            margin-bottom: 25%;
+            &.login__right__find {
+                @include tablet {
+                    display: none;
+                }
+            }
+        }
+
+        &__signup {
+            position: relative;
+            bottom: 12.5%;
+            color: $text-third-color;
+            // width: max-content;
+
+            &__btn {
+                color: $button-primary-color;
+                font-weight: 500;
+                padding-left: 0.2rem;
+            }
+
+            @include tablet {
+                margin-top: 1.2rem;
+            }
+        }
+
+        &__mobile-signup {
+            display: none;
+            color: white;
+            position: absolute;
+            right: 6%;
+            top: 2.5%;
+            font-size: 1.3rem;
+            font-weight: 500;
+            font-family: 'Jost', sans-serif;
+
+            @include tablet {
+                display: inline;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }

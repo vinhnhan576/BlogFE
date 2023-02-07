@@ -12,7 +12,7 @@ $new-blog-mobile-pfp-size: 2.5rem;
 
     &__top-bloggers {
         // background: black;
-        // border: 3px solid white;
+        // border: 3px solid $text-primary-color;
         // border-radius: 7px;
         width: 90%;
         margin-bottom: 60px;
@@ -20,7 +20,7 @@ $new-blog-mobile-pfp-size: 2.5rem;
         flex-direction: column;
 
         &__title {
-            color: white;
+            color: $text-primary-color;
             margin-bottom: 15px;
             font-size: 28pt;
             font-family: 'Josefin Sans', sans-serif;
@@ -103,7 +103,7 @@ $new-blog-mobile-pfp-size: 2.5rem;
         }
 
         &__placeholder {
-            color: white;
+            color: $text-primary-color;
             margin-left: 40px;
             font-size: 42px;
             font-family: 'Josefin Sans', sans-serif;

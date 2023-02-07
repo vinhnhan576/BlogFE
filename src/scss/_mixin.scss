@@ -1,17 +1,23 @@
 @mixin flex($align-items, $justify-content) {
-	display: flex;
-	align-items: $align-items;
-	justify-content: $justify-content;
+    display: flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
 }
 
 @mixin tablet {
-	@media only screen and (max-width: $tablet-width) {
-		@content;
-	}
+    @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
 }
 
 @mixin mobile {
-	@media only screen and (max-width: $mobile-width) {
-		@content;
-	}
+    @media only screen and (max-width: $mobile-width) {
+        @content;
+    }
+}
+
+@mixin zoom {
+    @media (-webkit-device-pixel-ratio: 1.25) {
+        zoom: 0.8;
+    }
 }

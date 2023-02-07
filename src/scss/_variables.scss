@@ -1,13 +1,17 @@
-$primary-bg: #6d4e3c;
+$primary-bg: #f6f9fe;
 $primary-color: white;
 
-$button-primary-color: #553624;
+$button-primary-color: #5384c4;
 $button-hover-color: #64402b;
 
-$text-primary-color: white;
-$text-secondary-color: rgb(184, 184, 184);
-$text-third-color: rgb(214, 214, 214);
-$text-inverted-color: #9b755f;
+$input-border-color:#e1e4ec;
+$input-border-color-focus: #839bba;
+
+$text-primary-color: #040404;
+$text-secondary-color: #5384c4;
+$text-secondary-invert-color: #b6cae3;
+$text-third-color: rgb(185, 185, 185);
+$text-inverted-color: #d1d5dc;
 
 $header-height: 170px;
 $header-tablet-height: 100px;
@@ -15,6 +19,7 @@ $header-mobile-height: 80px;
 $header-shrink-height: 100px;
 $header-mobile-shrink-height: 50px;
 
+$full-shadow: rgba(24, 16, 12, 0.05) 0px 0px 40px;
 $box-shadow: rgba(24, 16, 12, 0.7) 0px 20px 60px;
 $text-box-shadow: rgba(24, 16, 12, 0.322) 4px 3px;
 
