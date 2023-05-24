@@ -1,0 +1,5 @@
+.login__image.signup {
+    @include tablet {
+        display: none;
+    }
+}

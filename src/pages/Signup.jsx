@@ -60,7 +60,7 @@ const Signup = () => {
 				<img src={loginImage02} alt="" />
 			</div> */}
             <form className="login__form" onSubmit={handleSignUp}>
-                <div className="login__form__item">
+                {/* <div className="login__form__item">
                     <div className="login__form__item__whole__small__title">
                         <div className="login__form__item__small__title">
                             <div className="login__form__item__title"> Họ</div>
@@ -83,6 +83,23 @@ const Signup = () => {
                             />
                         </div>
                     </div>
+                </div> */}
+                <div className="login__form__item">
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        onChange={handleChange('name')}
+                        value={account.name}
+                        // placeholder={"huongleehere".toString()}
+                    />
+                    <label
+                        className="login__form__item__placeholder-text"
+                        for="fname"
+                        id="placeholder-fname"
+                    >
+                        <div className="login__form__item__text">Name</div>
+                    </label>
                 </div>
                 <div className="login__form__item">
                     <input
@@ -90,7 +107,7 @@ const Signup = () => {
                         name="alias"
                         id="alias"
                         onChange={handleChange('alias')}
-						value={account.alias}
+                        value={account.alias}
                         // placeholder={"huongleehere".toString()}
                     />
                     <label
@@ -102,36 +119,55 @@ const Signup = () => {
                     </label>
                 </div>
                 <div className="login__form__item">
-                    <div className="login__form__item__title">
-                        Tên tài khoản
-                    </div>
                     <input
                         type="text"
                         name="username"
-                        id="username-signup"
+                        id="username"
                         onChange={handleChange('username')}
+                        value={account.username}
                         // placeholder={"huongleehere".toString()}
                     />
+                    <label
+                        className="login__form__item__placeholder-text"
+                        for="fname"
+                        id="placeholder-fname"
+                    >
+                        <div className="login__form__item__text">Username</div>
+                    </label>
                 </div>
                 <div className="login__form__item">
-                    <div className="login__form__item__title">Mật khẩu</div>
                     <input
                         type="password"
                         name="password"
-                        id="password-signup"
+                        id="password"
                         onChange={handleChange('password')}
-                        // placeholder={"Abc_123456".toString()}
+                        value={account.password}
+                        // placeholder={"huongleehere".toString()}
                     />
+                    <label
+                        className="login__form__item__placeholder-text"
+                        for="fname"
+                        id="placeholder-fname"
+                    >
+                        <div className="login__form__item__text">Password</div>
+                    </label>
                 </div>
                 <div className="login__form__item">
-                    <div className="login__form__item__title">Email</div>
                     <input
-                        type="text"
-                        name="email"
-                        id="email"
-                        onChange={handleChange('email')}
-                        // placeholder={"Bloggit@gmail.com".toString()}
+                        type="password"
+                        name="password"
+                        id="password"
+                        onChange={handleChange('password')}
+                        value={account.password}
+                        // placeholder={"huongleehere".toString()}
                     />
+                    <label
+                        className="login__form__item__placeholder-text"
+                        for="fname"
+                        id="placeholder-fname"
+                    >
+                        <div className="login__form__item__text">Confirm password</div>
+                    </label>
                 </div>
                 {/* <div className="login__form__item">
 					<div className="login__form__item__title">Số điện thoại </div>
@@ -174,7 +210,7 @@ const Signup = () => {
 					/>
 				</div> */}
                 <button type="submit" className="login__form__button">
-                    Đăng ký
+                    Signup
                 </button>
             </form>
         </div>

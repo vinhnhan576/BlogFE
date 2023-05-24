@@ -63,6 +63,7 @@ const Login = () => {
     const leftBg = useRef();
     const logoRef = useRef();
     const lowerRef = useRef();
+    const leftRef = useRef();
     const rightRef = useRef();
     const backRef = useRef();
     const onMobileLoginClick = () => {
@@ -72,6 +73,18 @@ const Login = () => {
         rightRef.current.classList.toggle('login-clicked');
         backRef.current.classList.toggle('login-clicked');
     };
+
+    const onPCSignupClick = () => {
+        leftRef.current.classList.toggle('signup-clicked');
+        rightRef.current.classList.toggle('signup-clicked');
+    };
+
+    const [logoHeight, setLogoHeight] = useState('');
+
+    useEffect(
+        () => setLogoHeight(leftBg.current?.clientHeight + 18 + 'px'),
+        [leftBg]
+    );
 
     // const onMobileBackBtnClick = () => {
     //     leftBg.current.classList.remove('login-clicked');
@@ -84,7 +97,7 @@ const Login = () => {
     return (
         <div className="login">
             <div className="login__container">
-                <div className="login__left">
+                <div className="login__left" ref={leftRef}>
                     {/* <img src={loginImage01} alt="" /> */}
                     <div className="login__left__bg" ref={leftBg}>
                         <img
@@ -110,13 +123,19 @@ const Login = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="login__logo__mobile" ref={logoRef}>
+                    <div
+                        className="login__logo__mobile"
+                        ref={logoRef}
+                        style={{
+                            top: logoHeight,
+                        }}
+                    >
                         <img src={logo} alt="" />
                     </div>
                     <div className="login__lower" ref={lowerRef}>
-                        <div className="login__lower__message">
+                        {/* <div className="login__lower__message">
                             Dive into the ocean of inspiration
-                        </div>
+                        </div> */}
                         <button
                             onClick={onMobileLoginClick}
                             className="login__form__button login__left__login-btn"
@@ -246,12 +265,13 @@ const Login = () => {
                         </div>
                         <div className="login__form__signup">
                             Don't have an account yet?
-                            <Link to="signup">
-                                <span className="login__form__signup__btn">
-                                    {' '}
-                                    Sign up.
-                                </span>
-                            </Link>
+                            <span
+                                className="login__form__signup__btn"
+                                onClick={onPCSignupClick}
+                            >
+                                {' '}
+                                Sign up.
+                            </span>
                         </div>
                         <Link to="signup">
                             <div className="login__form__mobile-signup">
